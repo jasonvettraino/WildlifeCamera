@@ -1,0 +1,64 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+
+  "Description": "AWS CloudFormation Creates three s3 buckets with same suffix - used for processing images.",
+
+  "Parameters": {
+    "BucketSuffix": {
+      "Description": "Suffix for image buckets",
+      "Type": "String",
+      "Default": "cloudystuff.info"
+    }
+  },
+
+  "Resources": {
+    "inputBucket" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties": {
+          "BucketName" : {"Fn::Join": ["",[
+                          "inputimage",
+                          ".",
+                          {"Ref": "BucketSuffix"}
+                          ]]
+                        }
+      }
+    },
+    "catBucket" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName" : {"Fn::Join": ["",[
+                        "catimage",
+                        ".",
+                        {"Ref": "BucketSuffix"}
+                        ]]
+                      }
+      }
+    },
+    "processedBucket" : {
+      "Type" : "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName" : {"Fn::Join": ["",[
+                        "processedimage",
+                        ".",
+                        {"Ref": "BucketSuffix"}
+                        ]]
+                      }
+      }
+    }
+  },
+
+   "Outputs" : {
+     "InputS3" : {
+       "Value" : {"Ref" : "inputBucket"},
+       "Description" : "Name of the input bucket for images"
+     },
+     "CatS3" : {
+       "Value" : {"Ref" : "catBucket"},
+       "Description" : "Name of the bucket for cat images"
+     },
+     "ProcessedS3" : {
+       "Value" : {"Ref" : "processedBucket"},
+       "Description" : "Name of the processed bucket for images"
+     }
+   }
+}
