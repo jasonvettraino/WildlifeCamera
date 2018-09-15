@@ -1,0 +1,771 @@
+
+var jQuery_money = jQuery.noConflict();
+jQuery_money(window).on("load", loadSubThemes);
+jQuery_money("#theme_money").on("change", loadSubThemes);
+
+
+
+jQuery_money( document ).ready(function() {
+   jQuery_money("#menu_2").on("click", function() {
+
+     jQuery_money("#menu_1").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_3").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_4").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_2").addClass("nav-tab-active");
+
+     jQuery_money("#menu1").removeClass("tab-content-active");
+
+     jQuery_money("#menu3").removeClass("tab-content-active");
+
+     jQuery_money("#menu4").removeClass("tab-content-active");
+
+     jQuery_money("#menu1").addClass("tab-content");
+
+     jQuery_money("#menu3").addClass("tab-content");
+
+     jQuery_money("#menu4").addClass("tab-content");
+
+     jQuery_money("#menu2").addClass("tab-content-active");
+
+  });
+   
+   
+   
+   jQuery_money("#menu_1").on("click", function() {
+
+     jQuery_money("#menu_2").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_3").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_4").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_1").addClass("nav-tab-active");
+
+     jQuery_money("#menu2").removeClass("tab-content-active");
+
+     jQuery_money("#menu3").removeClass("tab-content-active");
+
+     jQuery_money("#menu4").removeClass("tab-content-active");
+
+     jQuery_money("#menu2").addClass("tab-content");
+
+     jQuery_money("#menu3").addClass("tab-content");
+
+     jQuery_money("#menu4").addClass("tab-content");
+
+     jQuery_money("#menu1").addClass("tab-content-active");
+
+  });
+
+
+
+ 
+
+
+
+
+
+
+
+jQuery_money("#menu_3").on("click", function() {
+
+     jQuery_money("#menu_1").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_2").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_4").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_3").addClass("nav-tab-active");
+
+     jQuery_money("#menu1").removeClass("tab-content-active");
+
+     jQuery_money("#menu2").removeClass("tab-content-active");
+
+     jQuery_money("#menu4").removeClass("tab-content-active");
+
+     jQuery_money("#menu1").addClass("tab-content");
+
+     jQuery_money("#menu2").addClass("tab-content");
+
+     jQuery_money("#menu4").addClass("tab-content");
+
+     jQuery_money("#menu3").addClass("tab-content-active");
+
+  });
+
+
+
+
+
+jQuery_money("#menu_4").on("click", function() {
+
+     jQuery_money("#menu_1").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_2").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_3").removeClass("nav-tab-active");
+
+     jQuery_money("#menu_4").addClass("nav-tab-active");
+
+     jQuery_money("#menu1").removeClass("tab-content-active");
+
+     jQuery_money("#menu2").removeClass("tab-content-active");
+
+     jQuery_money("#menu3").removeClass("tab-content-active");
+
+     jQuery_money("#menu1").addClass("tab-content");
+
+     jQuery_money("#menu2").addClass("tab-content");
+
+     jQuery_money("#menu3").addClass("tab-content");
+
+     jQuery_money("#menu4").addClass("tab-content-active");
+
+  });
+   
+   
+});
+
+
+
+jQuery_money( "#submit_formats" ).submit(function() {
+   var data_format =[];
+
+	if (jQuery_money('#format_add_1').is(':checked')){
+
+   	  data_format.push([1,"MEGABANNER"]);
+
+	}
+
+	if (jQuery_money('#format_add_2').is(':checked')){
+
+   	  data_format.push([2,"PAVE HAUT"]);
+
+	}
+
+	if (jQuery_money('#format_add_3').is(':checked')){
+
+   	  data_format.push([3,"GRAND ANGLE"]);
+
+	}
+
+	if (jQuery_money('#format_add_4').is(':checked')){
+
+   	  data_format.push([4,"SKYSCRAPER"]);
+
+	}
+
+	if (jQuery_money('#format_add_19').is(':checked')){
+
+   	  data_format.push([19,"PAVE BAS"]);
+
+	}
+
+	if (jQuery_money('#format_add_20').is(':checked')){
+
+   	  data_format.push([20,"MEGASKYSCRAPER"]);
+
+	}
+
+	if (jQuery_money('#format_add_28').is(':checked')){
+
+   	  data_format.push([28,"MEGABANNER BAS"]);
+
+	}
+
+	if (jQuery_money('#format_add_31').is(':checked')){
+
+   	  data_format.push([31,"BILLBOARD"]);
+
+	}
+
+	if (jQuery_money('#format_add_5').is(':checked')){
+
+   	  data_format.push([5,"HABILLAGE"]);
+
+	}
+
+	if (jQuery_money('#format_add_6').is(':checked')){
+
+   	  data_format.push([6,"FOOTER ou SLIDE-IN"]);
+
+	}
+
+	if (jQuery_money('#format_add_16').is(':checked')){
+
+   	  data_format.push([16,"RECO CONTENUS"]);
+
+	}
+
+	if (jQuery_money('#format_add_25').is(':checked')){
+
+   	  data_format.push([25,"NATIVE ARTICLE"]);
+
+	}
+
+	if (jQuery_money('#format_add_30').is(':checked')){
+
+   	  data_format.push([30,"OVERLAY IMAGE"]);
+
+	}
+
+	if (jQuery_money('#format_add_10').is(':checked')){
+
+   	  data_format.push([10,"CONTENU VIDEO"]);
+
+	}
+
+	if (jQuery_money('#format_add_11').is(':checked')){
+
+   	  data_format.push([11,"IN TEXT"]);
+
+	}
+
+	if (jQuery_money('#format_add_23').is(':checked')){
+
+   	  data_format.push([23,"PRE-ROLL"]);
+
+	}
+
+	if (jQuery_money('#format_add_24').is(':checked')){
+
+   	  data_format.push([24,"INTER VIDEO"]);
+
+	}
+
+	if (jQuery_money('#format_add_15').is(':checked')){
+
+   	  data_format.push([15,"MOBILE"]);
+
+	}
+
+	if (jQuery_money('#format_add_34').is(':checked')){
+
+   	  data_format.push([34,"NATIVE ARTICLE AUTO"]);
+
+	}
+	
+
+	  var data = {
+
+			action: 'register',
+
+            formats: data_format
+
+
+
+		};
+
+	 	jQuery_money.post(the_ajax_script.ajaxurl, data, function(response) {
+
+	 	});
+});
+
+jQuery_money('#reg_form_sec').validate({
+	rules: 
+	{
+	  theme_money: {
+			 required: true
+			},
+		   sub_theme_money: {
+			   required: true
+			},
+
+         lang_money: {
+
+			   required: true
+
+			}
+
+         
+	},
+				
+	messages: 
+	{
+	  theme_money: "Please choose a category.",
+		sub_theme_money: "Please choose a subcategory.",
+
+      lang_money: "Please choose a country.",
+	}
+});
+
+
+
+
+
+
+jQuery_money('#token_form').validate({
+	rules: 
+	{
+	  themoneytizer_setting_siteid: {
+			 required: true
+			}
+	},
+				
+	messages: 
+	{
+		themoneytizer_setting_siteid: {
+										required: "The Moneytizer ID is required."
+									}	
+	}
+});
+
+jQuery_money('#reg_form').validate({
+ 
+	rules: 
+	{
+	  tel_money: {
+			 required: true,
+			 number: true,
+			 minlength: 10
+			},
+	  mail_money: {
+			 required: true,
+			 email: true
+			},
+	  nom_money:  {
+	         required: true,
+			},
+   prenom_money:  {
+	         required: true,
+			},
+ password_money:  {
+	         required: true,
+			 minlength: 8
+			},
+ c_password_money:  {
+	         required: true,
+			 equalTo: "#password_money"
+ },
+    adresse_money:  {
+	         required: true,
+			},
+			   ville_money:  {
+	         required: true,
+			},
+			   cp_money:  {
+	         required: true,
+			},
+
+          country_money:  {
+
+	         required: true,
+
+			}
+ 
+	},
+				
+	messages: 
+	{
+
+     country_money: "Please select a country.",
+					cp_money: "Please enter a zip code.",					
+					ville_money: "Please enter a city.",
+					adresse_money: "Please enter a valid adress.",
+					tel_money: "Please enter a valid phone number.",
+					nom_money: "The lastname is required.",
+					prenom_money: "The firstname is required.",
+					mail_money: "Please enter a valid email address.",
+					password_money: {
+              required: "The Password is required.",
+              minlength: "The password should contain at least 8 characters."
+                       },
+					c_password_money: {
+              required: "The Password confirmation is required.",
+              equalTo: "The Password confirmation must be equal to the password."
+                            }				
+	}});
+
+
+
+
+
+function loadSubThemes(){
+	var data = {		
+	 "2": [{"ID":"8","desc":"Pièces détachées"},{"ID":"9","desc":"Réparation automobile"},{"ID":"11","desc":"Petites annonces"},{"ID":"11","desc":"Petites annonces"},{"ID":"12","desc":"Moto"},{"ID":"13","desc":"Voitures anciennes"},{"ID":"95","desc":"Autre"}],
+		"1": [{"ID":"1","desc":"Livres et Littérature"},{"ID":"2","desc":"People"},{"ID":"3","desc":"Beaux-arts"},{"ID":"4","desc":"Humour"},{"ID":"5","desc":"Film/Cinema"},{"ID":"6","desc":"Musique/Radios"},{"ID":"7","desc":"Télévision"},{"ID":"94","desc":"Autre"}],
+		"3": [{"ID":"14","desc":"Publicité"},{"ID":"15","desc":"Biotech/Biomédicale"},{"ID":"16","desc":"Construction"},{"ID":"17","desc":"Développement durable"},{"ID":"18","desc":"Ressources humaines"},{"ID":"19","desc":"Marketing"},{"ID":"96","desc":"Autre"}],
+		"4": [{"ID":"97","desc":"Autre"}],
+		"5": [{"ID":"98","desc":"Autre"}],
+		"6": [{"ID":"20","desc":"Adoption"},{"ID":"21","desc":"Bébés"},{"ID":"22","desc":"Garderie/Crèche"},{"ID":"23","desc":"Education enfants"},{"ID":"24","desc":"Education adolescents"},{"ID":"25","desc":"Grossesse"},{"ID":"99","desc":"Autre"}],
+		"7": [{"ID":"26","desc":"Cocktails/Bières"},{"ID":"27","desc":"Restaurants"},{"ID":"28","desc":"Œnologie"},{"ID":"29","desc":"Recettes et autre"}],
+		"8": [{"ID":"100","desc":"Autre"}],
+		"9": [{"ID":"30","desc":"Arts"},{"ID":"31","desc":"Jeux de cartes"},{"ID":"32","desc":"BD/Manga"},{"ID":"33","desc":"Dessin/Croquis"},{"ID":"34","desc":"Généalogie"},{"ID":"35","desc":"Peinture"},{"ID":"36","desc":"Photographie"},{"ID":"37","desc":"Jeux vidéo"},{"ID":"101","desc":"Autre"}],
+		"10": [{"ID":"38","desc":"Jardinage"},{"ID":"39","desc":"Bricolage"},{"ID":"40","desc":"Décoration"},{"ID":"102","desc":"Autre"}],
+		"11": [{"ID":"41","desc":"Questions juridiques"},{"ID":"42","desc":"Politique"},{"ID":"103","desc":"Autre"}],
+		"12": [{"ID":"104","desc":"Autre"}],
+		"13": [{"ID":"105","desc":"Autre"}],
+		"14": [{"ID":"43","desc":"Chats"},{"ID":"44","desc":"Chiens"},{"ID":"45","desc":"Grands animaux"},{"ID":"106","desc":"Autre"}],
+		"15": [{"ID":"46","desc":"Architectes"},{"ID":"47","desc":"Achat/Vente"},{"ID":"107","desc":"Autre"}],
+		"16": [{"ID":"48","desc":"Biologie"},{"ID":"49","desc":"Chimie"},{"ID":"50","desc":"Géographie"},{"ID":"51","desc":"Physique"},{"ID":"52","desc":"Espace/Astronomie"},{"ID":"53","desc":"Météo"},{"ID":"108","desc":"Autre"}],
+		"17": [{"ID":"54","desc":"Comparateurs"},{"ID":"55","desc":"Bons plans"},{"ID":"109","desc":"Autre"}],
+		"18": [{"ID":"56","desc":"Courses de voitures"},{"ID":"57","desc":"Cyclisme"},{"ID":"58","desc":"Boxe"},{"ID":"59","desc":"Pêche"},{"ID":"60","desc":"Golf"},{"ID":"61","desc":"Course de chevaux"},{"ID":"62","desc":"Equitation"},{"ID":"63","desc":"Chasse"},{"ID":"64","desc":"Arts martiaux"},{"ID":"65","desc":"Athlétisme"},{"ID":"66","desc":"Courses de motos"},{"ID":"67","desc":"Basket-ball"},{"ID":"68","desc":"Rugby"},{"ID":"69","desc":"Running/Jogging"},{"ID":"70","desc":"Voile"},{"ID":"71","desc":"Ski"},{"ID":"72","desc":"Snowboard"},{"ID":"73","desc":"Surf/Bodyboard"},{"ID":"74","desc":"Natation"},{"ID":"75","desc":"Tennis"},{"ID":"70","desc":"Football"},{"ID":"110","desc":"Autre"}],
+	  "19": [{"ID":"77","desc":"Beauté"},{"ID":"78","desc":"Mode"},{"ID":"79","desc":"Bijoux"},{"ID":"111","desc":"Autre"}],
+		"20": [{"ID":"80","desc":"Graphiques 3-D"},{"ID":"81","desc":"Animation"},{"ID":"82","desc":"Appareils photo et caméscopes"},{"ID":"83","desc":"Téléphonie mobile"},{"ID":"84","desc":"Tests et comparatifs"},{"ID":"85","desc":"Infographie"},{"ID":"86","desc":"Video"},{"ID":"87","desc":"Technologie d'Internet"},{"ID":"88","desc":"Web Clip Art"},{"ID":"89","desc":"Web design"},{"ID":"90","desc":"Moteur de recherche"},{"ID":"112","desc":"Autre"}],
+		"21": [{"ID":"91","desc":"Vols"},{"ID":"92","desc":"Chambres d'hôtes"},{"ID":"93","desc":"Hôtels"},{"ID":"113","desc":"Autre"}]
+	};
+   var theme = jQuery_money("#theme_money").val();
+   var sub_theme = jQuery_money("#sub_theme_money").empty();
+    jQuery_money.each(data[theme], function() {
+        sub_theme.append("<option value=" + this.ID + ">" + this.desc + "</option>");
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+jQuery_money('#update_form').validate({
+
+	rules: 
+
+	{
+
+	      nom_money: {
+
+			   required: true
+
+			},
+
+	      prenom_money: {
+
+			   required: true
+
+			},
+
+	      mail_money: {
+
+			   required: true
+
+			},
+
+         tel_money: {
+
+			   required: true,
+
+            number: true,
+
+			   minlength: 10
+
+			},
+
+         ville_money: {
+
+			   required: true
+
+			},
+
+         cp_money: {
+
+			   required: true
+
+			}     
+
+	}
+
+});
+
+
+
+
+
+jQuery('#update_form').submit(function () {
+
+        if(jQuery(this).valid()) {
+
+          var data = {
+
+			   action: 'update',
+
+            nom: jQuery('#nom_money').val(),
+
+            prenom: jQuery('#prenom_money').val(),
+
+            mail: jQuery('#mail_money').val(),
+
+            tel: jQuery('#tel_money').val(),
+
+            adresse: jQuery('#adresse_money').val(),
+
+            ville: jQuery('#ville_money').val(),
+
+            cp: jQuery('#cp_money').val(),
+
+            pays: jQuery('#country_money').val(),
+
+            bank_name: jQuery('#user_bank_name_money').val(),
+
+            bank_iban: jQuery('#user_bank_iban_money').val(),
+
+            bank_bic: jQuery('#user_bank_bic_money').val(),
+
+            bank_name_bank: jQuery('#user_bank_namebank_money').val(),
+
+            bank_adress_bank: jQuery('#user_bank_adressbank_money').val(),
+
+            bank_country_bank: jQuery('#user_bank_countrybank_money').val(),
+
+            bank_city_bank: jQuery('#user_bank_citybank_money').val(),
+
+            bank_zip_bank: jQuery('#user_bank_zipbank_money').val(),
+
+            user_entreprise_money: jQuery('#user_entreprise_money').val(),
+
+            user_siren_money: jQuery('#user_siren_money').val(),
+
+            user_tva_money: jQuery('#user_tva_money').val(),
+
+            paypal_money: jQuery('#paypal_money').val()
+
+		   };
+
+         jQuery.post(the_ajax_script.ajaxurl, data, function(response) {
+
+			  //alert(response);
+
+	      });
+
+        }
+
+});
+
+
+
+
+
+
+
+jQuery_money( "#submit_new_formats" ).submit(function() {
+
+   var data_format =[];
+
+	if (jQuery_money('#format_add_1').is(':checked') && jQuery_money('#format_add_1').is(':enabled')){
+   	  data_format.push([1,"MEGABANNER"]);
+	}
+
+	if (jQuery_money('#format_add_2').is(':checked') && jQuery_money('#format_add_2').is(':enabled')){
+   	  data_format.push([2,"PAVE HAUT"]);
+	}
+
+	if (jQuery_money('#format_add_3').is(':checked') && jQuery_money('#format_add_3').is(':enabled') ){
+   	  data_format.push([3,"GRAND ANGLE"]);
+	}
+
+	if (jQuery_money('#format_add_4').is(':checked') && jQuery_money('#format_add_4').is(':enabled')){
+   	  data_format.push([4,"SKYSCRAPER"]);
+	}
+
+	if (jQuery_money('#format_add_19').is(':checked') && jQuery_money('#format_add_19').is(':enabled')){
+   	  data_format.push([19,"PAVE BAS"]);
+	}
+
+	if (jQuery_money('#format_add_20').is(':checked') && jQuery_money('#format_add_20').is(':enabled')){
+   	  data_format.push([20,"MEGASKYSCRAPER"]);
+	}
+
+	if (jQuery_money('#format_add_28').is(':checked') && jQuery_money('#format_add_28').is(':enabled')){
+   	  data_format.push([28,"MEGABANNER BAS"]);
+	}
+
+	if (jQuery_money('#format_add_31').is(':checked') && jQuery_money('#format_add_31').is(':enabled')){
+   	  data_format.push([31,"BILLBOARD"]);
+	}
+
+	if (jQuery_money('#format_add_5').is(':checked') && jQuery_money('#format_add_5').is(':enabled')){
+   	  data_format.push([5,"HABILLAGE"]);
+	}
+
+	if (jQuery_money('#format_add_6').is(':checked') && jQuery_money('#format_add_6').is(':enabled')){
+   	  data_format.push([6,"FOOTER ou SLIDE-IN"]);
+	}
+
+	if (jQuery_money('#format_add_16').is(':checked') && jQuery_money('#format_add_16').is(':enabled')){
+   	  data_format.push([16,"RECO CONTENUS"]);
+	}
+
+	if (jQuery_money('#format_add_25').is(':checked') && jQuery_money('#format_add_25').is(':enabled')){
+   	  data_format.push([25,"NATIVE ARTICLE"]);
+	}
+
+	if (jQuery_money('#format_add_30').is(':checked') && jQuery_money('#format_add_30').is(':enabled')){
+   	  data_format.push([30,"OVERLAY IMAGE"]);
+	}
+
+	if (jQuery_money('#format_add_10').is(':checked') && jQuery_money('#format_add_10').is(':enabled')){
+   	  data_format.push([10,"CONTENU VIDEO"]);
+	}
+
+	if (jQuery_money('#format_add_11').is(':checked') && jQuery_money('#format_add_11').is(':enabled')){
+   	  data_format.push([11,"IN TEXT"]);
+	}
+
+	if (jQuery_money('#format_add_23').is(':checked') && jQuery_money('#format_add_23').is(':enabled')){
+   	  data_format.push([23,"PRE-ROLL"]);
+	}
+
+	if (jQuery_money('#format_add_24').is(':checked') && jQuery_money('#format_add_24').is(':enabled')){
+   	  data_format.push([24,"INTER VIDEO"]);
+	}
+
+	if (jQuery_money('#format_add_15').is(':checked') && jQuery_money('#format_add_15').is(':enabled')){
+   	  data_format.push([15,"MOBILE"]);
+	}
+	
+	if (jQuery_money('#format_add_34').is(':checked') && jQuery_money('#format_add_34').is(':enabled')){
+   	  data_format.push([34,"NATIVE ARTICLE AUTO"]);
+	}
+
+
+
+  var data = {
+			action: 'add_formats',
+            formats: data_format
+		};
+
+	 	jQuery_money.post(the_ajax_script.ajaxurl, data, function(response) {  
+          
+      var wp_lang = jQuery_money('#wp_lang').val();
+      
+      if (wp_lang.indexOf("fr_") != -1) {
+          alert('Votre demande de format a bien été enregistrée. Si votre demande est acceptée, un mail vous sera envoyé et votre tag sera disponible directement dans l\'onglet "Tags".');
+      }else if (wp_lang.indexOf("es_") != -1) {
+          alert('Tu petición de formato ha sido registrada correctamente. Si tu petición es aceptada, recibirás un mail y tu tag estará disponible directamente en el apartado "Tags".');
+      }else if (wp_lang.indexOf("de_") != -1) {
+          alert('Your format request has been taken into account. If the request is approved, you will receive a message and find your tag available in "tags".');
+      }else if (wp_lang.indexOf("it_") != -1) {
+          alert('Your format request has been taken into account. If the request is approved, you will receive a message and find your tag available in "tags".');
+      }else{
+          alert('Your format request has been taken into account. If the request is approved, you will receive a message and find your tag available in "tags".');
+      }
+
+	 	});
+
+});
+
+
+
+
+
+
+
+jQuery_money('#periode').bind('change', function (e) { 
+
+     if( jQuery_money('#periode').val() == 'custom_date') {
+
+            jQuery_money('#custom_date').show();
+
+            jQuery_money('#custom_date').css({ display: "inline-block" });
+
+        }else{
+
+            jQuery_money('#custom_date').hide();
+
+        }         
+
+}).trigger('change');
+
+  
+
+jQuery_money(function() {
+
+    jQuery_money( "#custom_date_from" ).datepicker();
+
+  });
+
+jQuery_money(function() {
+
+    jQuery_money( "#custom_date_to" ).datepicker();
+
+  });
+
+
+
+
+
+jQuery_money('#periode').change(function() {
+
+  jQuery_money("#custom_date_from").val('');
+
+  jQuery_money("#custom_date_to").val('');
+
+});
+
+
+
+
+
+
+
+    jQuery_money('#entreprise_money').on('click',function () {
+
+        if (jQuery_money('#entreprise_money').is(':checked')) {
+
+           jQuery_money('#entreprise_money_user').css({ display: "" });
+
+           jQuery_money('#siren_money').css({ display: "" });
+
+           jQuery_money('#tva_money').css({ display: "" });
+
+        } else {
+
+            jQuery_money('#entreprise_money_user').css({ display: "none" });
+
+            jQuery_money('#siren_money').css({ display: "none" });
+
+            jQuery_money('#tva_money').css({ display: "none" });
+
+        }
+
+    });
+
+    
+
+    
+
+        jQuery_money('#entreprise_money_up').on('click',function () {
+
+        if (jQuery_money('#entreprise_money_up').is(':checked')) {
+
+           jQuery_money('#entreprise_money_user_up').css({ display: "" });
+
+           jQuery_money('#siren_money_up').css({ display: "" });
+
+           jQuery_money('#tva_money_up').css({ display: "" });
+
+        } else {
+
+            jQuery_money('#entreprise_money_user_up').css({ display: "none" });
+
+            jQuery_money('#siren_money_up').css({ display: "none" });
+
+            jQuery_money('#tva_money_up').css({ display: "none" });
+
+        }
+
+    });
+
+
+
+
+
+
+
+jQuery_money('#bankChoice2').on('click',function () {
+		jQuery_money( ".invisible_paypal" ).addClass("visible_paypal");
+		jQuery_money( ".invisible_paypal" ).removeClass("invisible_paypal");
+});
+
+
+jQuery_money('#bankChoice1').on('click',function () {
+		jQuery_money( ".visible_paypal" ).addClass("invisible_paypal");
+		jQuery_money( ".visible_paypal" ).removeClass("visible_paypal");
+});

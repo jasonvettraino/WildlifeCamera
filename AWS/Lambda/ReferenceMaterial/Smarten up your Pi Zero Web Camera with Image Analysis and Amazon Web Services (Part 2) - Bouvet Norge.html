@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<!-- saved from url=(0128)https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2 -->
+<html lang="no"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta property="fb:app_id" content="1096791840427166">
+<link rel="stylesheet" href="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/main.min.css"><link rel="shortcut icon" type="image/png" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-64/favicon-white-on-orange.png">
+<link rel="apple-touch-icon" sizes="57x57" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-57/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="60x60" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-60/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="72x72" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-72/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="76x76" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-76/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="114x114" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-114/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="120x120" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-120/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="144x144" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-144/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="152x152" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-152/favicon-white-on-orange.png.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-180/favicon-white-on-orange.png.jpg">
+
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-16/favicon-white-on-orange.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-32/favicon-white-on-orange.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-96/favicon-white-on-orange.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/29e046da-dc92-4443-ac0a-b68adb93b490:8d81d1b4060e3a3d74b1ce14433256c9e7ebb1bb/square-192/favicon-white-on-orange.png"><!-- Google Tag Manager --><script async="" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/track.js.download"></script><script type="text/javascript" async="" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/analytics.js.download"></script><script type="text/javascript" async="" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/js"></script><script type="text/javascript" async="" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/analytics.js.download"></script><script id="facebook-jssdk" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/sdk.js.download"></script><script async="" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/gtm.js.download"></script><script>dataLayer = [];</script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NLQ954L');</script><!-- End Google Tag Manager --><link href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2" rel="canonical">
+<meta name="google-site-verification" content="lDmU6JAscHFz3k2QijtA513qsdwyQBbzOzoXhp2XliY">
+<meta name="description" content="Bouvet er et norsk konsulentselskap som bistår bedrifter og samfunnsaktører i alle bransjer. Bouvet designer, utvikler, forvalter og gir råd om IT-løsninger og digital kommunikasjon.">
+<meta property="og:title" content="Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2)">
+<meta property="og:description" content="Bouvet er et norsk konsulentselskap som bistår bedrifter og samfunnsaktører i alle bransjer. Bouvet designer, utvikler, forvalter og gir råd om IT-løsninger og digital kommunikasjon.">
+<meta property="og:site_name" content="Bouvet Norge">
+<meta property="og:url" content="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:image" content="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/9a21b84d-458c-4274-8a4b-94fa548efa7d:41c1aaa08f47542f52876262ffa0a7935bdbe52f/block-1200-630/Screen-Shot-2017-01-14-at-18.57.43.png.jpg?quality=85">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630"><title>Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge</title><link rel="stylesheet" type="text/css" href="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/prettify.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_loader{background-color:#f5f6f7;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:-webkit-sticky;top:0}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_in_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2_mobile_chat_started{animation-duration:300ms;animation-name:fb_bounce_out_v2_mobile_chat_started;transition-timing-function:ease-in}.fb_customer_chat_bubble_pop_in{animation-duration:250ms;animation-name:fb_customer_chat_bubble_bounce_in_animation}.fb_customer_chat_bubble_animated_no_badge{box-shadow:0 3px 12px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_no_badge:hover{box-shadow:0 5px 24px rgba(0, 0, 0, .3)}.fb_customer_chat_bubble_animated_with_badge{box-shadow:-5px 4px 14px rgba(0, 0, 0, .15);transition:box-shadow 150ms linear}.fb_customer_chat_bubble_animated_with_badge:hover{box-shadow:-5px 8px 24px rgba(0, 0, 0, .2)}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}.fb_mobile_overlay_active{background-color:#fff;height:100%;overflow:hidden;position:fixed;visibility:hidden;width:100%}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_v2_mobile_chat_started{0%{opacity:0;top:20px}100%{opacity:1;top:0}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_v2_mobile_chat_started{0%{opacity:1;top:0}100%{opacity:0;top:20px}}@keyframes fb_customer_chat_bubble_bounce_in_animation{0%{bottom:6pt;opacity:0;transform:scale(0, 0);transform-origin:center}70%{bottom:18pt;opacity:1;transform:scale(1.2, 1.2)}100%{transform:scale(1, 1)}}</style></head>
+
+<body data-portal-component-type="page" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0"><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/mp2v3DK3INU.html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="f109b3051e6cc44" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/ping.html" style="display: none;"></iframe></div></div></div><script data-th-inline="javascript">(function (d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s);js.id = id;js.src = "//connect.facebook.net/nb_NO/sdk.js#xfbml=1&version=v2.8&appId=1096791840427166";fjs.parentNode.insertBefore(js, fjs);}(document, "script", "facebook-jssdk"));</script><!-- Google Tag Manager (noscript) --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NLQ954L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+<div class="viewport c-pageWrap">
+    <header class="MainHeader" id="js-HeaderNav">
+    <div class="c-justifyCenter u-flexAlignItemsCenter u-padding" style="height: 100%" id="js-MainHeader">
+        <div class="MainHeader-contentWrap">
+            <div class="MainHeader-logo">
+                <a href="https://www.bouvet.no/">
+                    <svg><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#bouvet-logo-orange"></use></svg>
+                </a>
+            </div>
+            <nav class="MainHeader-navigation">
+                <span class="MainHeader-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.no/prosjekter">Prosjekter</a>
+                </span><span class="MainHeader-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.no/ting-vi-kan">Ting vi kan</a>
+                </span><span class="MainHeader-menuItem MainHeader-link is-inPath">
+                    <a href="https://www.bouvet.no/bouvet-deler">Bouvet deler</a>
+                </span><span class="MainHeader-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.no/bli-en-av-oss">Bli en av oss</a>
+                </span><span class="MainHeader-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.no/kurs">Kurs</a>
+                </span><span class="MainHeader-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.no/investor">Investor</a>
+                </span><span class="MainHeader-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.no/om-bouvet">Om oss</a>
+                </span>
+                <!-- minside NO-->
+                <span class="MainHeader-menuItem MainHeader-link">
+                   <a title="min side" href="https://minside.bouvet.no/" target="_self">Min Side</a>
+                </span>
+                <!-- minsida SV -->
+                
+                <span class="MainHeader-menuItem is-compact" style="min-height:20px;min-width:20px">
+                    <a href="https://www.bouvet.se/" style="z-index: 100;position:relative" alt="Swedish" title="Swedish">
+                        <svg style="width:1rem; height:1rem; border-radius:50%;pointer-events:none;z-index:10;position:relative"><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#flag-swedish"></use></svg>
+                    </a>
+                </span><span class="MainHeader-menuItem is-compact" style="min-height:20px;min-width:20px">
+                    <a href="https://en.bouvet.no/" style="z-index: 100;position:relative" alt="English" title="English">
+                        <svg style="width:1rem; height:1rem; border-radius:50%;pointer-events:none;z-index:10;position:relative"><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#flag-british"></use></svg>
+                    </a>
+                </span>
+            </nav>
+            <nav class="MainHeader-hamburger u-noSelect" id="js-MainHeader-hamburger">
+
+            <div class="MainHeader-hamburgerWrap" role="button" aria-label="Open menu" aria-expanded="false">
+                <i></i><i></i><i></i>
+            </div>
+            </nav>
+       </div>
+    </div>
+</header>
+
+    <div id="js-MobileNav" class="MobileNavigation">
+    <div class="background-parallellogram-blue-mobileNav"></div>
+    <div class="MobileNavigation-contentWrap">
+        <div class="MobileNavigation-content">
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                <a href="https://www.bouvet.no/prosjekter">Prosjekter</a>
+                </div>
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                <a href="https://www.bouvet.no/ting-vi-kan">Ting vi kan</a>
+                </div>
+                <div class="MobileNavigation-menuItem MainHeader-link is-inPath">
+                <a href="https://www.bouvet.no/bouvet-deler">Bouvet deler</a>
+                </div>
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                <a href="https://www.bouvet.no/bli-en-av-oss">Bli en av oss</a>
+                </div>
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                <a href="https://www.bouvet.no/kurs">Kurs</a>
+                </div>
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                <a href="https://www.bouvet.no/investor">Investor</a>
+                </div>
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                <a href="https://www.bouvet.no/om-bouvet">Om oss</a>
+                </div>
+                <!-- min side -->
+                <div class="MobileNavigation-menuItem MainHeader-link">
+                    <a title="min side" href="https://minside.bouvet.no/" target="_self">Min Side</a>
+                </div>
+                <!-- min sida -->
+                
+                <span class="MobileNavigation-menuItem MainHeader-link">
+                    <a href="https://www.bouvet.se/">
+                        <svg style="width:20px; height:20px; border-radius:50%;"><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#flag-swedish"></use></svg>
+                    </a>
+                </span><span class="MobileNavigation-menuItem MainHeader-link">
+                    <a href="https://en.bouvet.no/">
+                        <svg style="width:20px; height:20px; border-radius:50%;"><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#flag-british"></use></svg>
+                    </a>
+                </span>
+        </div>
+    </div>
+    <div class="background-parallellogram-yello-mobileNav"></div>
+</div>
+
+    
+    <div id="js-modalContainer" class="Modal-container">
+        <div id="js-modalBackdrop" class="Modal-backDrop">
+        </div>
+    </div>
+    <div id="js-globalSearchFlipParent">
+        <form role="button" aria-label="Search site" aria-expanded="false" tabindex="1" class="GlobalSearchFlip u-flexRow u-flexAlignItemsCenter" id="js-globalSearchFlip" action="https://www.bouvet.no/sok" style="max-width: 45px;">
+            <svg class="u-me-responsiveSvg"><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#magnifying-glass"></use></svg>
+            <input class="u-visuallyHidden" type="submit" value="Search the site">
+
+            <script type="application/json" id="GlobalSearchFlipPlaceholder">
+                {
+                    "placeholder": "S\u00F8k p\u00E5 siden"
+                }
+            </script>
+        </form>
+    </div>
+
+
+    <div class="c-mainWrap">
+        <div data-portal-component-type="region" data-portal-region="main" class="c-main">
+            
+                
+    
+     
+        <header data-portal-component-type="part" class="c-sectionBottomSpace u-fullWidthContainer ImageBlogHeader">
+    <div class="u-imageContainerMaxWidth">
+        <div class="ImageBackLink u-flexRow  u-noSelect">
+            <a class="u-flexRow" href="https://www.bouvet.no/bouvet-deler">
+                <div class="ImageBackLink-backLinkText u-flexRow">
+                    <svg class="ImageBackLink-chevron-left"><use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#chevron-circle-left"></use></svg>
+                    <span>Bouvet deler</span>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div>
+        <div class="u-imageBlocker ">
+     <!--data-th-style="'padding-top:' + *{image.heightPercentage} + '%'">-->
+     <div class="u-fullWidthImage">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D&#39;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&#39;%20xmlns%3Axlink%3D&#39;http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink&#39;%20viewBox%3D&#39;0%200%201024%20512&#39;%3E%3Crect%20width%3D&#39;100%25&#39;%20height%3D&#39;100%25&#39;%20fill%3D&#39;%23eee&#39;%2F%3E%3Cdefs%3E%3Csymbol%20id%3D&#39;a&#39;%20viewBox%3D&#39;0%200%2090%2066&#39;%20opacity%3D&#39;0.3&#39;%3E%3Cpath%20d%3D&#39;M85%205v56H5V5h80m5-5H0v66h90V0z&#39;%2F%3E%3Ccircle%20cx%3D&#39;18&#39;%20cy%3D&#39;20&#39;%20r%3D&#39;6&#39;%2F%3E%3Cpath%20d%3D&#39;M56%2014L37%2039l-8-6-17%2023h67z&#39;%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D&#39;%23a&#39;%20width%3D&#39;20%25&#39;%20x%3D&#39;40%25&#39;%2F%3E%3C%2Fsvg%3E" srcset="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/9a21b84d-458c-4274-8a4b-94fa548efa7d:41c1aaa08f47542f52876262ffa0a7935bdbe52f/block-256-128/Screen-Shot-2017-01-14-at-18.57.43.png?quality=70 256w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/9a21b84d-458c-4274-8a4b-94fa548efa7d:41c1aaa08f47542f52876262ffa0a7935bdbe52f/block-512-256/Screen-Shot-2017-01-14-at-18.57.43.png?quality=65 512w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/9a21b84d-458c-4274-8a4b-94fa548efa7d:41c1aaa08f47542f52876262ffa0a7935bdbe52f/block-1024-512/Screen-Shot-2017-01-14-at-18.57.43.png?quality=60 1024w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/9a21b84d-458c-4274-8a4b-94fa548efa7d:41c1aaa08f47542f52876262ffa0a7935bdbe52f/block-2048-1024/Screen-Shot-2017-01-14-at-18.57.43.png?quality=55 2048w" sizes="100vw" tittle="Diagram" alt="Diagram">
+            
+     </div>
+</div>
+    </div>
+    
+
+    <svg class="ImageBlogHeader-desktop ImageBlogHeader-svgBottom" width="100%" height="84" viewBox="0 0 750 84" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor" fill-rule="evenodd"><path d="M102 84H0V.121L204 84H102zM750 16.062l-.5-.062L204 84h546V16.062z"></path></g></svg>
+    <svg class="ImageBlogHeader-pad ImageBlogHeader-svgBottom" width="100%" height="30" preserveAspectRatio="none" viewBox="0 0 546 68" xmlns="http://www.w3.org/2000/svg"><path d="M546 .062L545.5 0 0 68h546V.062z" fill="currentColor" fill-rule="evenodd"></path>&gt;</svg>
+</header>
+
+        <div class="u-flexRow u-flexJustifyCenter u-padding ">
+            <div class="c-textBox is-blog">
+                <h1 class="Blog-heading">Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2)</h1>
+            </div>
+        </div>
+        <section class="c-blockBottomSpace u-sm-padding u-flexRow u-flexJustifyCenter">
+    <div class="BlogAboutBox c-textBox is-blog">
+        <div class="u-flexRow BlogAboutBox-head">
+            <div class="u-flexColumn BlogAboutBox-authorWrap">
+                <div class="u-flexRow BlogAboutBox-authors">
+                    
+                        <span>Mark West</span>&nbsp;
+                    
+                </div>
+            </div>
+            <span class="BlogAboutBox-dateWrap modified-published-date">10. jan. 2017</span>
+        </div>
+    </div>
+</section>
+
+        <article>
+    <section class="c-blockBottomSpace c-justifyCenter u-sm-padding ">
+        <div class="c-textBox is-blog">
+            
+            <div class="Article u-textFormatting u-utbruddImageWarning"><p><em><span style="text-decoration: underline;">Update 06 Aug 2018</span>: In case you are interested, I've just published a new blog about creating an <a href="https://www.bouvet.no/bouvet-deler/adding-ai-to-edge-devices-with-the-movidius-neural-compute-stick">AI powered security camera using the Raspberry Pi and Movidius Neural Compute Stick</a>! </em></p>
+<h3>Introduction</h3>
+<p>This blog post continues the story&nbsp;of how I reduced the amount of <a href="https://en.wikipedia.org/wiki/False_positives_and_false_negatives">false positives</a>&nbsp;triggered by my&nbsp;<a href="https://www.bouvet.no/bouvet-deler/utbrudd/building-a-motion-activated-security-camera-with-the-raspberry-pi-zero">motion activated Raspberry Pi Zero security camera</a>, by utilising Amazon Web Services (aka AWS). <br><br><a href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-1">Part One</a>&nbsp;of this blog post focused on me finding a&nbsp;strategy for dealing with&nbsp;false positives. In summary&nbsp;I decided&nbsp;to try adding&nbsp;<a href="https://aws.amazon.com/rekognition/">AWS Rekognition</a>&nbsp;(a Cloud based image analysis service) to my&nbsp;security camera project. This would enable the solution to filter out false positives&nbsp;which in turn would reduce the amount of false email alerts I was receiving.</p>
+<h3>Moving to the Cloud</h3>
+<p>The <a href="https://www.bouvet.no/bouvet-deler/utbrudd/building-a-motion-activated-security-camera-with-the-raspberry-pi-zero">original version of&nbsp;my Pi Zero Security Camera</a> handled everything locally, from&nbsp;detecting movement&nbsp;to firing off alert emails. Adding AWS Rekognition to the solution required me to think differently. Did I really want&nbsp;the Pi Zero to make synchronous calls to&nbsp;AWS Rekognition, wait for a reply and then decide whether or not to send an email?</p>
+<p>A more tempting alternative was to move the whole image processing solution&nbsp;to the Cloud as follows:</p>
+<ol>
+<li>The Pi Zero would focus on running the Motion Software. Any detected movement&nbsp;would result in a snapshot from the video stream being uploaded to the Cloud component.</li>
+<li>The Cloud component&nbsp;would call AWS Rekognition and send an alert email if the snapshot was found to contain one or more people.</li>
+</ol>
+<p>This solution&nbsp;had&nbsp;the benefit of decoupling the Pi Zero and Cloud components (making it easier to change either one with minimal effect on the other).</p>
+<p>With all this in mind&nbsp;I decided to build&nbsp;the whole image processing solution in Amazon's Cloud, using the following Amazon Web Service components:</p>
+<ul>
+<li><a href="https://aws.amazon.com/lambda/"><strong>Lambda Functions</strong></a>: These allowed me&nbsp;to define&nbsp;and run&nbsp;code snippets (or microservices) in a serverless environment. &nbsp;My code snippets&nbsp;where written in&nbsp;Node.js, but one can also use Java, Python or C#.</li>
+<li><a href="https://aws.amazon.com/step-functions"><strong>Step Functions</strong></a>: I used these to&nbsp;orchestrate the aforementioned&nbsp;Lambda Functions into an image processing workflow.</li>
+<li><strong><a href="https://aws.amazon.com/s3">s3</a>: </strong>The&nbsp;destination for all image files uploaded from the&nbsp;Pi Zero.</li>
+<li><a href="https://aws.amazon.com/ses/"><strong>Simple Email Service (SES)</strong></a>: Used to send emails from the image processing&nbsp;solution.</li>
+<li><a href="https://aws.amazon.com/iam/"><strong>IAM</strong></a>: Used to&nbsp;give all resources access to their required dependancies.</li>
+<li><a href="https://aws.amazon.com/rekognition/"><strong>Rekognition</strong></a>: Used for image analysis and elimination&nbsp;of false positives.</li>
+</ul>
+<p>Both Rekognition and Step Functions are both relatively new additions to the AWS family, having been formally launched at the close of 2016.</p>
+<p>Note that I had&nbsp;never used any of these services before! Luckily for me it was easy to get started&nbsp;thanks to <a href="https://aws.amazon.com/documentation/">good documentation</a> and the occasional visit to&nbsp;<a href="http://stackoverflow.com/questions/tagged/amazon-web-services">stack overflow</a> :)</p>
+<h3>Solution&nbsp;Overview</h3>
+<p>So how did all these components fit together?</p>
+<p><a href="https://utbrudd.bouvet.no/wp-content/uploads/2017/01/Screen-Shot-2017-01-13-at-17.26.41.png" target="_blank" rel="noopener noreferrer"></a></p>
+<figure class="justify"><img src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/Screen-Shot-2017-01-13-at-17.26.41.png" alt="Screen-Shot-2017-01-13-at-17.26.41" style="text-align: justify; width: 100%;">
+<figcaption style="text-align: left;">Overview of Smart Pi Zero Security Camera (click to view a bigger version)</figcaption>
+</figure>
+<p>Lots of boxes, arrows and pretty pastel colours here - but what is actually happening? &nbsp;Let us begin&nbsp;at the Pi Zero:</p>
+<ol>
+<li>The Motion Software constantly monitors&nbsp;the camera's video feed.</li>
+<li>When Motion detects movement, it creates an image file (a snapshot of the event).</li>
+<li>The image file is uploaded from the Pi Zero to s3 via a Node.js script.</li>
+<li>Each file uploaded to&nbsp;the s3<em> /upload</em> directory&nbsp;s3 triggers a Lambda Function that in turn activates&nbsp;a Step Function (in other words a separate Step Function instance is created for each image file).</li>
+<li>The Step Function orchestrates Lambda Functions into a workflow that process the image file. &nbsp;These Lambda Functions use the AWS Rekognition (for image analysis) and AWS SES (for sending emails) API's.</li>
+<li>After processing&nbsp;the image file is finally moved to the<em>&nbsp;/archive</em> directory in s3.</li>
+</ol>
+<p>Although it is not shown&nbsp;in the above diagram, AWS IAM is also involved here, by ensuring that all components have access to the resources they need to do their job. &nbsp;For example, any&nbsp;resources trying to interact with s3 will receive a 403 (forbidden) error code unless their IAM Role contains the correct access permissions.</p>
+<h3>The Technical&nbsp;Details</h3>
+<p>The code for this solution can be found on <a href="https://github.com/markwest1972/smart-security-camera">GitHub</a>, where I've&nbsp;also included tips for replicating this project. Creating components in AWS is pretty straightforwards and well documented, so rather than writing a complete "How To" guide I will summarise my experiences with some of the AWS components I used.</p>
+<h4>NODE.JS UPLOAD SCRIPT</h4>
+<p><a href="https://github.com/markwest1972/smart-security-camera/tree/master/s3-upload">Here you'll find the code for the upload script</a>.</p>
+<p>The easiest way to&nbsp;upload files to s3 is to use one of the <a href="https://aws.amazon.com/tools/">many AWS SDK's</a>. I chose to use the <a href="http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/top-level-namespace.html">Node.js SDK</a> which was quickly installed via the following steps:</p>
+<ol>
+<li><a href="https://github.com/sdesalas/node-pi-zero">Install a recent version of Node.js and npm</a>.</li>
+<li>Install the AWS&nbsp;SDK for Node.js by running this&nbsp;command (or alternatively add&nbsp;<em>aws-sdk</em>&nbsp;to you package.json file):</li>
+</ol>
+<pre class="prettyprint prettyprinted" style=""><span class="pln">npm install aws</span><span class="pun">-</span><span class="pln">sdk</span></pre>
+<h4></h4>
+<h4>S3</h4>
+<p>s3 is an online storage service where objects are stored in "buckets" - basically logical storage units. Objects in buckets can&nbsp;be organised into directories. I started by creating an s3 bucket with 2 root directories:</p>
+<ul>
+<li><em>/upload </em>: destination for all uploaded image files.</li>
+<li><em>/archive</em>&nbsp;: storage of&nbsp;processed image files.</li>
+</ul>
+<p>My next step was to make sure that an event would be triggered for each new upload. I did this by creating an <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html">s3 Notification</a>&nbsp;that would trigger a Lambda Function for each <strong>Object Created</strong> event in&nbsp;the<em> /upload</em> directory.</p>
+<h4>LAMBDA FUNCTIONS</h4>
+<p><a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions">Here you'll find code for all the Lambda Functions used by the solution</a>. A Lambda Function is basically a single unit of code with a standardised input and output. These functions run in Amazon's Cloud without any need for managing or provisioning servers. <a href="https://martinfowler.com/articles/serverless.html">Serverless FTW</a>!</p>
+<h3><strong>The Lambda Function Handler</strong></h3>
+<p>I created six&nbsp;Node.js Lambda Functions for this project, each with their own distinct&nbsp;task. In order to work with the AWS Lambda Function infrastructure&nbsp;<a href="http://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html">you'll need to wrap your code with a handler</a>. &nbsp;This looks like this:</p>
+<p>exports.handler = (event, context, callback) = { ... your code ... };</p>
+<p>This handler provides three objects:</p>
+<ul>
+<li><strong>event</strong>: This contains input to the Lambda Function.</li>
+<li><strong>context</strong>: This provides&nbsp;runtime information, such as request id, log information and so on.</li>
+<li><strong>callback</strong>: This is used for <a href="http://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-handler.html#nodejs-prog-model-handler-callback">returning information from the Lambda Function</a>.</li>
+</ul>
+<p>By using the event and callback parameters you can exchange information between Lambda Functions.This is especially important when orchestrating multiple Lambda Functions in a workflow&nbsp;via a Step Function.</p>
+<h3><strong>Defining Lambda Functions</strong></h3>
+<p>Lambda Functions can be defined in two ways:</p>
+<ol>
+<li>Via a&nbsp;browser based&nbsp;code editor (see <a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions/rekognition-image-assessment">rekognition-image-assessment</a>&nbsp;for an example).</li>
+<li>Via uploading a Zip File (see <a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions/nodemailer-send-notification">nodemailer-send-notification</a>&nbsp;for an example).</li>
+</ol>
+<p>Zip Files are mainly used when you need to bundle up dependancies in your Lambda Function. Note that the AWS SDK is available to Lambda Functions by default, and usage of this does not require bundling. &nbsp;However if your Lambda Function uses a third party library then these dependancies will be need to be bundled up with the code in a Zip File.</p>
+<h3><strong>Logging</strong></h3>
+<p>Running Lambda Functions result in log files being created on&nbsp;<a href="https://aws.amazon.com/cloudwatch/?sc_channel=PS&amp;sc_campaign=acquisition_ND&amp;sc_publisher=google&amp;sc_medium=cloudwatch_b&amp;sc_content=cloudwatch_e&amp;sc_detail=aws%20cloudwatch&amp;sc_category=cloudwatch&amp;sc_segment=161191660305&amp;sc_matchtype=e&amp;sc_country=ND&amp;s_kwcid=AL!4422!3!161191660305!e!!g!!aws%20cloudwatch&amp;ef_id=VzdeqAAAAP0g1pEf:20170114172302:s">AWS CloudWatch</a>. Any calls to:</p>
+<pre class="prettyprint prettyprinted" style=""><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">)</span></pre>
+<p>will be recorded here.</p>
+<h3><strong>Configuration</strong></h3>
+<p>The configuration of Lambda Function also allows you to amongst other things specify the amount of memory each function uses. When testing my&nbsp;<a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions/nodemailer-send-notification">nodemailer-send-notification</a>&nbsp;Lambda Function I received a large amount of timeout errors. This function is responsible for sending alert emails with the&nbsp;attached image file. I figured the size of the attachment was part of the problem and therefore doubled&nbsp;the memory available to this function - from 128 to 256. &nbsp;This resolved the timeout errors.</p>
+<h3><strong>Calling other AWS services via the AWS SDK</strong></h3>
+<p>The AWS SDK is natively available to all Lambda Functions, and provides a mechanism for calling services such as Rekognition, SES and s3. &nbsp;To see examples of this, check out the following Lambda functions on GitHub:</p>
+<ul>
+<li><a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions/rekognition-image-assessment">rekognition-image-assessment</a>&nbsp;- calls Rekognitions detectLabels function.</li>
+<li><a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions/s3-archive-image">s3-archive-image</a>&nbsp;- moves files in s3.</li>
+<li><a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions/nodemailer-error-handler">nodemailer-error-handler</a>&nbsp;- sends emails via AWS SES and NodeMailer (a third party plugin).</li>
+</ul>
+<h3><strong>Summary</strong></h3>
+<p>Lambda Functions are one of the more established AWS services, and this shows. &nbsp;It was really simple to get up and running with these, but I would advise working on your code locally before uploading it to AWS, as it the round trip between coding and testing&nbsp;is somewhat quicker.</p>
+<h4>STEP FUNCTIONS</h4>
+<p><a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-step-functions">Here you'll find a JSON File that defines&nbsp;a Step&nbsp;Function</a>.</p>
+<p>Step Functions are a new addition to the AWS portfolio, and give the possibility to orchestrate Lambda Functions (MicroServices) into State Machines or even workflows.</p>
+<p>You create a Step Function&nbsp;by manually creating&nbsp;a JSON file in a in-browser editor. Blueprints are available to help you get started and you can generate a on the fly visualisation of your model at the press of the button. The Step Function uses a unique identifier or <strong>arn</strong> to identify&nbsp;the Lambda Functions it wishes to use.</p>
+<p>My favourite feature of Step Functions is&nbsp;the Logging. Each instance of the Step Machine is logged and visualised as follows:</p>
+<figure class="justify"><img src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/Screen-Shot-2017-01-14-at-18.57.43.png" alt="Screen-Shot-2017-01-14-at-18.57.43" style="text-align: justify; width: 100%;">
+<figcaption style="text-align: left;">A visualisation&nbsp;of a completed Step Machine instance, showing output from the first step (Lambda Function) call. &nbsp;Each box represents a call to a Lambda Function. &nbsp;The white box is an error handler and was not called in this instantiation.</figcaption>
+</figure>
+<p>This feature makes it possible to drill through previous instances, in addition to following those that are currently executing. Inputs and output for each step are also available via this view. Perfect for debugging!</p>
+<p class="">One aspect of Step Functions I disliked was that you cannot edit them&nbsp;once they are&nbsp;created. Instead you need to create a whole new Step Function from scratch. Adding a version number to the Step Function name is therefore a smart tactic.</p>
+<h4>IAM ROLES</h4>
+<p>You are required to specify a Role for each&nbsp;Step and Lambda Function you create. This Role specifies when resources these functions are allowed to&nbsp;access.</p>
+<p>There are multiple ways in which you can specify roles, but perhaps the easiest way is to define these using the AWS IAM Console. &nbsp;In this console you can also see an overview of all the roles you have created.</p>
+<p>See the various&nbsp;<a href="https://github.com/markwest1972/smart-security-camera/tree/master/aws-lambda-functions">Lambda Functions in the project GitHub</a> for examples of&nbsp;Roles I defined for this project.</p>
+<h3>AWS Costs</h3>
+<p>So how much does all this Cloud functionality cost? &nbsp;Surprisingly little. &nbsp;As a newcomer to AWS I was able to sign up for the <a href="https://aws.amazon.com/free/">AWS free tier</a>&nbsp;which&nbsp;gives me the following for free:</p>
+<ul>
+<li><strong>Lambda Functions</strong>: Up to 1 million requests per month, indefinitely.</li>
+<li><strong>Step Functions</strong>: Up to&nbsp;4,000 instances per month, indefinitely.</li>
+<li><strong>SES</strong>:&nbsp;Up to 62,000 outbound message per month, indefinitely.</li>
+</ul>
+<p>Frankly I doubt that my camera will ever exceed these thresholds. &nbsp;But if I do, the costs are minimal. For example 1,000 step function instances will cost me a grand total of $0.025!</p>
+<p>The&nbsp;<a href="https://aws.amazon.com/free/">AWS free tier</a>&nbsp;also gives me&nbsp;the following free of charge <em>for the first 12 months</em>:</p>
+<ul>
+<li><strong>s3</strong>: 5GB of storage, 20,000 get requests and 2,000 put requests per month.</li>
+<li><strong>Rekognition</strong>: 5,000 requests per month.</li>
+</ul>
+<p>Again this is more than enough for my cameras requirements. Should my camera still be in operation in 12 months I can expect to incur the following costs:</p>
+<ul>
+<li><strong>s3</strong>:&nbsp;$0.023 per GB storage,&nbsp;$0.004 per 10,000 GET requests and $0.005 per 1,000 PUT requests.</li>
+<li><strong>Rekognition</strong>: $1.00 per month for up to 1,000 Image Analysis requests.</li>
+</ul>
+<p>My camera doesn't create a lot of AWS traffic because it is pointing at a quiet&nbsp;back yard. 50 images a day is less than 20,000 a year so all this is pretty affordable from my perspective.</p>
+<h3>Adjustments to Motion</h3>
+<p>I also made a few&nbsp;further&nbsp;adjustments to the same&nbsp;<a href="https://utbrudd.bouvet.no/2017/01/05/building-a-motion-activated-security-camera-with-the-raspberry-pi-zero/">Motion configuration file that I originally defined when building the security camera</a>:</p>
+<ul>
+<li>I changed the&nbsp;<span style="color: #0000ff;"><strong>on_picture_save</strong></span>&nbsp;parameter to call the s3 upload script by setting the value to&nbsp;<em>/usr/local/bin/scripts/s3-upload/<a href="http://process-picture.sh/" class="autolinked autolinked-url">process-picture.sh</a> smart-security-camera-upload %f.</em> &nbsp;See&nbsp;<a href="https://github.com/markwest1972/smart-security-camera/tree/master/s3-upload">s3-upload on GitHub</a>&nbsp;for more information about this.</li>
+<li>I changed the <span style="color: #0000ff;"><strong>quality</strong></span> parameter to <em>100</em>. &nbsp;My reason for doing this was to provide&nbsp;Rekognition with the best possible quality of image files.</li>
+<li>I changed <span style="color: #0000ff;"><strong>minimum_motion_frames</strong></span> from <em>1</em> to <em>2</em>. &nbsp;This means that two frames of movement need to be detected before a motion event is triggered.</li>
+<li>I set <span style="color: #0000ff;"><strong>text_double</strong></span> to <em>on</em>. &nbsp;This was a purely cosmetic change that doubled the size of the text displayed on the image.</li>
+<li>I set<span style="color: #0000ff;"><strong> text_left</strong></span> to <em>GardenCam</em>. Another cosmetic change that identifies my camera.</li>
+</ul>
+<p>I will probably continue to tweak Motion as I gather more results from field testing the camera. &nbsp;<a href="https://github.com/markwest1972/smart-security-camera/tree/master/motion-config">All changes to the Motion configuration file will be documented on GitHub</a>.</p>
+<h3>Initial Results</h3>
+<p>A weekends&nbsp;field testing of the complete solution yielded&nbsp;favourable results. False positive images are now successfully filtered out by the AWS image processing solution, which means that I no longer receive false alarm emails for pictures such as this:</p>
+<p></p>
+<figure class="justify"><img src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/Screen-Shot-2017-01-15-at-12.26.55.jpg" alt="Screen-Shot-2017-01-15-at-12.26.55" style="text-align: justify; width: 100%;">
+<figcaption style="text-align: left;">False positive triggered by throwing a cushion out of a second floor window (rock and roll). This was filtered out by the AWS image processing, meaning that I didn’t receive an alert email 🙂</figcaption>
+</figure>
+<p>The solution also successfully dealt with images containing people.&nbsp;In the below example you can see that my lab assistant / daughter was&nbsp;correctly identified as a "Human" and a "Person". &nbsp;This was despite low light, motion blur and her head being partially covered.</p>
+<p></p>
+<figure class="justify"><img src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/Screen-Shot-2017-01-15-at-14.35.01.png" alt="Screen-Shot-2017-01-15-at-14.35.01" style="text-align: justify; width: 100%;">
+<figcaption style="text-align: left;">Example of a positive movement alert email with image and Rekognition labels enclosed</figcaption>
+</figure>
+<h3>Ongoing Work</h3>
+<p>Although I am happy with the solution, I can't resist making a few more tweaks. Here's my plan for the next few weeks:</p>
+<ol>
+<li>Tweaking the Motion configuration file to improve the image files being sent to Rekognition (and perhaps resolve the issue where Rekognition misses people in the images).</li>
+<li>Improve formatting of alert emails.</li>
+<li>Improve error handing and logging.</li>
+<li>Add&nbsp;<em>/falsepositive</em>, <em>/alert</em> and<em> /error</em> subdirectories under <em>/archive </em>(and change the Step Function to use these).</li>
+</ol>
+<p>If you'd like to follow these&nbsp;changes and others, they will be made available from the <a href="https://github.com/markwest1972/smart-security-camera">project GitHub</a>&nbsp;as and when I implement them.</p>
+<h3>Overall Conclusion</h3>
+<p>This project has been one of the most&nbsp;rewarding&nbsp;hobby projects I have worked with, mainly because it introduced me to how&nbsp;I could smarten up my Raspberry Pi projects by the power of the Cloud!</p>
+<ul>
+<li>Using <strong>Amazon Web Services</strong> has been a&nbsp;positive experience. The documentation and examples for the Node.js SDK is of good quality and well structured, even for the newer services such as Step Functions. I've also picked up some skills that could be applied in my day job.</li>
+<li>Editing <strong>Lambda and Step Functions</strong> via&nbsp;the in-browser code editor&nbsp;was perhaps the most cumbersome part of this project. At the time of writing it doesn't seem that IDE support for AWS is widespread, and it would be nice to see this situation improve.</li>
+<li><strong>Lambda Functions</strong> are great. Theres no need to worry about server configuration or provisioning as this is all taken care of. They lend themselves well to a microservice architecture and provide massive scalability out of the box.</li>
+<li><strong>Rekognition</strong> is an amazing service, and&nbsp;by&nbsp;using it to remove false positives I've only scratched the service of it's potential. By making a simple&nbsp;change to my code I could enable&nbsp;my camera to perform facial detection, recognition and sentiment analysis.</li>
+</ul>
+<p>So that's it for now. If you have any comments or questions please share them in the comments below. You can also find me under @markawest on Twitter.</p>
+<h3><em>Thanks for reading!</em></h3>
+<figure class="justify"><img src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/Screen-Shot-2017-01-15-at-15.42.12.png" alt="Screen-Shot-2017-01-15-at-15.42.12" style="text-align: justify; width: 100%;">
+<figcaption style="text-align: left;">Exit stage left!</figcaption>
+</figure></div>
+            
+        </div>
+    </section>
+</article>
+
+        <section class="c-justifyCenter c-blockBottomSpace">
+            <div class="c-textBox">
+                <p class="c-sectionHeader"><strong>Temaer</strong></p>
+                <div class="js-BlogItem-services u-flexRow">
+                    <div class="ServiceChip">
+    <div class="ServiceChip-wrap">
+        <a href="https://www.bouvet.no/ting-vi-kan/teknologi"><div class="ServiceChip-content Small">Teknologi</div></a>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </section>
+        <script type="text/javascript">
+            (function () {
+                var divs = document.querySelectorAll('.Article pre');
+                [].forEach.call(divs, function (div) {
+                    div.classList.add('prettyprint');
+                });
+            })();
+        </script>
+        <!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script> -->
+    
+
+
+            
+            
+                
+    
+    <div data-portal-component-type="part" class="u-fullWidthContainer u-grayLine c-blockBottomSpace"></div>
+    <div class="u-flexRow u-flexJustifyCenter c-sectionBottomSpace">
+        <div class="FacebookComments u-padding  c-textBox is-blog">
+            <div class="fb-comments fb_iframe_widget fb_iframe_widget_fluid" data-href="https://www.bouvet.no/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2" data-numposts="5" data-width="100%" fb-xfbml-state="rendered"><span style="height: 1298px;"><iframe id="f30e40d7bcba13c" name="f3ef438ba571288" scrolling="no" title="Facebook Social Plugin" class="fb_ltr" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/comments.html" style="border: none; overflow: hidden; height: 1298px; width: 100%;"></iframe></span></div>
+        </div>
+    </div>
+
+
+
+            
+            
+                
+    
+    <section data-portal-component-type="part" class="c-sectionBottomSpace u-padding">
+        <div class="u-fullWidthContainer u-grayLine c-blockBottomSpace"></div>
+        <div class="BlogSection">
+            <div class="c-justifyCenter">
+                <div class="c-related">
+                    <h2>Andre Bouvet deler om lignende tema</h2>
+                </div>
+            </div>
+            <section class="c-justifyCenter">
+    <div class=" c-related">
+        <div class="RelatedBlogPostList u-la-flexRow u-sm-flexColumn">
+            <div class="RelatedBlogPost">
+                <a href="https://www.bouvet.no/bouvet-deler/adding-ai-to-the-raspberry-pi-with-the-movidius-neural-compute-stick-part-3-testing-out-the-raspberry-pi-zero"><p class="RelatedBlogPost-heading">Adding AI to the Raspberry Pi with the Movidius Neural Compute Stick Part 3: Testing out the Raspberry Pi Zero</p>
+                
+                
+                    <div class="RelatedBlogPost-lead"><p>In previous articles in this series I have shown how to quickly get real time video annotation...</p></div>
+                
+                </a>
+            </div>
+            <div class="RelatedBlogPost">
+                <a href="https://www.bouvet.no/bouvet-deler/adding-ai-to-the-raspberry-pi-with-the-movidius-neural-compute-stick-part-2-using-the-raspberry-pi-camera-module"><p class="RelatedBlogPost-heading">Adding AI to the Raspberry Pi with the Movidius Neural Compute Stick Part 2: Using the Raspberry Pi Camera Module</p>
+                
+                
+                    <div class="RelatedBlogPost-lead"><p>Previously I introduced the Movidius NCS and showed how it could be combined with a Rasperry P...</p></div>
+                
+                </a>
+            </div>
+            <div class="RelatedBlogPost">
+                <a href="https://www.bouvet.no/bouvet-deler/adding-ai-to-edge-devices-with-the-movidius-neural-compute-stick"><p class="RelatedBlogPost-heading">Adding AI to the Raspberry Pi with the Movidius Neural Compute Stick</p>
+                
+                
+                    <div class="RelatedBlogPost-lead"><p>In this article I’ll introduce the Movidius NCS, look into some use cases and finally give you...</p></div>
+                
+                </a>
+            </div>
+            <div class="RelatedBlogPost">
+                <a href="https://www.bouvet.no/bouvet-deler/2018-en-spektrumodysse"><p class="RelatedBlogPost-heading">2018: En Spektrumodyssé</p>
+                
+                
+                    <div class="RelatedBlogPost-lead"><p>På en konferanse som NDC prøver jeg å få med meg en blanding av ting som er nytt, nyttig, vikt...</p></div>
+                
+                </a>
+            </div>
+            <div class="RelatedBlogPost">
+                <a href="https://www.bouvet.no/bouvet-deler/hva-er-maskinlaering"><p class="RelatedBlogPost-heading">Intelligente byggeklosser</p>
+                
+                
+                    <div class="RelatedBlogPost-lead"><p>Maskinlæring og kunstig intelligens skremmer mange, men er det egentlig så faglig og nytenkend...</p></div>
+                
+                </a>
+            </div>
+            <div class="RelatedBlogPost">
+                <a href="https://www.bouvet.no/bouvet-deler/7-digitaliseringsvettregler"><p class="RelatedBlogPost-heading">7 regler for smart digitalisering</p>
+                
+                
+                    <div class="RelatedBlogPost-lead"><p>Mange digitaliserings forsøk starter med å lagre alle data. Det er smart. Men, hva gjør du med...</p></div>
+                
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </div>
+    </section>
+
+
+            
+            
+                
+    
+    <section data-portal-component-type="part" class="c-sectionBottomSpace u-padding">
+        <div class="u-fullWidthContainer u-grayLine c-blockBottomSpace"></div>
+        <div class="c-justifyCenter">
+            <div class="c-sectionHeader c-related">
+                <h2>Relaterte prosjekter</h2>
+            </div>
+        </div>
+        <section class="c-justifyCenter">
+    <div class="c-related">
+        <div class="u-flexRow ReferenceList-wrapper">
+            <a href="https://www.bouvet.no/prosjekter/cappelen-damm" title="Cappelen Damm" class="ReferenceList u-overflowHidden is-related">
+                <div class="ReferenceList-imageWrap">
+                    <img class="js-lazy ReferenceList-image" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D&#39;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&#39;%20xmlns%3Axlink%3D&#39;http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink&#39;%20viewBox%3D&#39;0%200%201024%20685&#39;%3E%3Crect%20width%3D&#39;100%25&#39;%20height%3D&#39;100%25&#39;%20fill%3D&#39;%23eee&#39;%2F%3E%3Cdefs%3E%3Csymbol%20id%3D&#39;a&#39;%20viewBox%3D&#39;0%200%2090%2066&#39;%20opacity%3D&#39;0.3&#39;%3E%3Cpath%20d%3D&#39;M85%205v56H5V5h80m5-5H0v66h90V0z&#39;%2F%3E%3Ccircle%20cx%3D&#39;18&#39;%20cy%3D&#39;20&#39;%20r%3D&#39;6&#39;%2F%3E%3Cpath%20d%3D&#39;M56%2014L37%2039l-8-6-17%2023h67z&#39;%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D&#39;%23a&#39;%20width%3D&#39;20%25&#39;%20x%3D&#39;40%25&#39;%2F%3E%3C%2Fsvg%3E" sizes="(min-width: 1440px) 480px, (min-width: 900px) 33vw, (min-width: 600px) 50vw, 33vw" alt="Barn på PCer" data-src="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/7d4d28b5-6691-4d44-a0a0-dba428bd9745:40b26a8720133802f73601a7e7e0854c706dd109/block-1024-685/Barn%20pa%CC%8A%20PCer.jpg?quality=60" data-srcset="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/7d4d28b5-6691-4d44-a0a0-dba428bd9745:40b26a8720133802f73601a7e7e0854c706dd109/block-256-171/Barn%20pa%CC%8A%20PCer.jpg?quality=70 256w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/7d4d28b5-6691-4d44-a0a0-dba428bd9745:40b26a8720133802f73601a7e7e0854c706dd109/block-512-342/Barn%20pa%CC%8A%20PCer.jpg?quality=65 512w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/7d4d28b5-6691-4d44-a0a0-dba428bd9745:40b26a8720133802f73601a7e7e0854c706dd109/block-1024-685/Barn%20pa%CC%8A%20PCer.jpg?quality=60 1024w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/7d4d28b5-6691-4d44-a0a0-dba428bd9745:40b26a8720133802f73601a7e7e0854c706dd109/block-2048-1369/Barn%20pa%CC%8A%20PCer.jpg?quality=55 2048w">
+                </div>
+                <div class="ReferenceList-textWrap">
+                    <p class="ReferenceList-textWrap-subHeader Small">Cappelen Damm</p>
+                    <p class="ReferenceList-textWrap-header u-gray u-superFat">Digitalisering av Cappelen Damm</p>
+                </div>
+            </a><a href="https://www.bouvet.no/prosjekter/bolgevarsel" title="BarentsWatch" class="ReferenceList u-overflowHidden is-related">
+                <div class="ReferenceList-imageWrap">
+                    <img class="js-lazy ReferenceList-image" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D&#39;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&#39;%20xmlns%3Axlink%3D&#39;http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink&#39;%20viewBox%3D&#39;0%200%201024%20685&#39;%3E%3Crect%20width%3D&#39;100%25&#39;%20height%3D&#39;100%25&#39;%20fill%3D&#39;%23eee&#39;%2F%3E%3Cdefs%3E%3Csymbol%20id%3D&#39;a&#39;%20viewBox%3D&#39;0%200%2090%2066&#39;%20opacity%3D&#39;0.3&#39;%3E%3Cpath%20d%3D&#39;M85%205v56H5V5h80m5-5H0v66h90V0z&#39;%2F%3E%3Ccircle%20cx%3D&#39;18&#39;%20cy%3D&#39;20&#39;%20r%3D&#39;6&#39;%2F%3E%3Cpath%20d%3D&#39;M56%2014L37%2039l-8-6-17%2023h67z&#39;%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D&#39;%23a&#39;%20width%3D&#39;20%25&#39;%20x%3D&#39;40%25&#39;%2F%3E%3C%2Fsvg%3E" sizes="(min-width: 1440px) 480px, (min-width: 900px) 33vw, (min-width: 600px) 50vw, 33vw" alt="bolgevarsel-screenshot" data-src="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/06d31083-023e-4a12-93cc-fc354560de7e:cfdb387d12824c5570a112a3162b5263f3d40787/block-1024-685/bolgevarsel-screenshot.png?quality=60" data-srcset="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/06d31083-023e-4a12-93cc-fc354560de7e:cfdb387d12824c5570a112a3162b5263f3d40787/block-256-171/bolgevarsel-screenshot.png?quality=70 256w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/06d31083-023e-4a12-93cc-fc354560de7e:cfdb387d12824c5570a112a3162b5263f3d40787/block-512-342/bolgevarsel-screenshot.png?quality=65 512w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/06d31083-023e-4a12-93cc-fc354560de7e:cfdb387d12824c5570a112a3162b5263f3d40787/block-1024-685/bolgevarsel-screenshot.png?quality=60 1024w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/06d31083-023e-4a12-93cc-fc354560de7e:cfdb387d12824c5570a112a3162b5263f3d40787/block-2048-1369/bolgevarsel-screenshot.png?quality=55 2048w">
+                </div>
+                <div class="ReferenceList-textWrap">
+                    <p class="ReferenceList-textWrap-subHeader Small">BarentsWatch</p>
+                    <p class="ReferenceList-textWrap-header u-gray u-superFat">Bølgevarsel med BarentsWatch</p>
+                </div>
+            </a><a href="https://www.bouvet.no/prosjekter/fasit" title="Fasit" class="ReferenceList u-overflowHidden is-related">
+                <div class="ReferenceList-imageWrap">
+                    <img class="js-lazy ReferenceList-image" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D&#39;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&#39;%20xmlns%3Axlink%3D&#39;http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink&#39;%20viewBox%3D&#39;0%200%201024%20685&#39;%3E%3Crect%20width%3D&#39;100%25&#39;%20height%3D&#39;100%25&#39;%20fill%3D&#39;%23eee&#39;%2F%3E%3Cdefs%3E%3Csymbol%20id%3D&#39;a&#39;%20viewBox%3D&#39;0%200%2090%2066&#39;%20opacity%3D&#39;0.3&#39;%3E%3Cpath%20d%3D&#39;M85%205v56H5V5h80m5-5H0v66h90V0z&#39;%2F%3E%3Ccircle%20cx%3D&#39;18&#39;%20cy%3D&#39;20&#39;%20r%3D&#39;6&#39;%2F%3E%3Cpath%20d%3D&#39;M56%2014L37%2039l-8-6-17%2023h67z&#39;%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D&#39;%23a&#39;%20width%3D&#39;20%25&#39;%20x%3D&#39;40%25&#39;%2F%3E%3C%2Fsvg%3E" sizes="(min-width: 1440px) 480px, (min-width: 900px) 33vw, (min-width: 600px) 50vw, 33vw" alt="Oslo kommune" data-src="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/15b0d524-ccc4-4cff-b470-a2fba4294a61:676cdbe254db4edca8b5fdd14a4d4e0954889be5/block-1024-685/shutterstock_360005489.jpg?quality=60" data-srcset="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/15b0d524-ccc4-4cff-b470-a2fba4294a61:676cdbe254db4edca8b5fdd14a4d4e0954889be5/block-256-171/shutterstock_360005489.jpg?quality=70 256w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/15b0d524-ccc4-4cff-b470-a2fba4294a61:676cdbe254db4edca8b5fdd14a4d4e0954889be5/block-512-342/shutterstock_360005489.jpg?quality=65 512w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/15b0d524-ccc4-4cff-b470-a2fba4294a61:676cdbe254db4edca8b5fdd14a4d4e0954889be5/block-1024-685/shutterstock_360005489.jpg?quality=60 1024w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/15b0d524-ccc4-4cff-b470-a2fba4294a61:676cdbe254db4edca8b5fdd14a4d4e0954889be5/block-2048-1369/shutterstock_360005489.jpg?quality=55 2048w">
+                </div>
+                <div class="ReferenceList-textWrap">
+                    <p class="ReferenceList-textWrap-subHeader Small">Fasit</p>
+                    <p class="ReferenceList-textWrap-header u-gray u-superFat">Digitaliserer kommune-Norge </p>
+                </div>
+            </a><a href="https://www.bouvet.no/prosjekter/forbrukerradet" title="Forbrukerrådet " class="ReferenceList u-overflowHidden is-related">
+                <div class="ReferenceList-imageWrap">
+                    <img class="js-lazy ReferenceList-image" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D&#39;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&#39;%20xmlns%3Axlink%3D&#39;http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink&#39;%20viewBox%3D&#39;0%200%201024%20685&#39;%3E%3Crect%20width%3D&#39;100%25&#39;%20height%3D&#39;100%25&#39;%20fill%3D&#39;%23eee&#39;%2F%3E%3Cdefs%3E%3Csymbol%20id%3D&#39;a&#39;%20viewBox%3D&#39;0%200%2090%2066&#39;%20opacity%3D&#39;0.3&#39;%3E%3Cpath%20d%3D&#39;M85%205v56H5V5h80m5-5H0v66h90V0z&#39;%2F%3E%3Ccircle%20cx%3D&#39;18&#39;%20cy%3D&#39;20&#39;%20r%3D&#39;6&#39;%2F%3E%3Cpath%20d%3D&#39;M56%2014L37%2039l-8-6-17%2023h67z&#39;%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D&#39;%23a&#39;%20width%3D&#39;20%25&#39;%20x%3D&#39;40%25&#39;%2F%3E%3C%2Fsvg%3E" sizes="(min-width: 1440px) 480px, (min-width: 900px) 33vw, (min-width: 600px) 50vw, 33vw" alt="Dukken Cayla" data-src="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/0064c356-f0f7-4496-a839-28d41fa7c5d5:816cebd48f316b5651b69f9a3555e6ce45e7ce74/block-1024-685/DSC_1107.jpg?quality=60" data-srcset="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/0064c356-f0f7-4496-a839-28d41fa7c5d5:816cebd48f316b5651b69f9a3555e6ce45e7ce74/block-256-171/DSC_1107.jpg?quality=70 256w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/0064c356-f0f7-4496-a839-28d41fa7c5d5:816cebd48f316b5651b69f9a3555e6ce45e7ce74/block-512-342/DSC_1107.jpg?quality=65 512w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/0064c356-f0f7-4496-a839-28d41fa7c5d5:816cebd48f316b5651b69f9a3555e6ce45e7ce74/block-1024-685/DSC_1107.jpg?quality=60 1024w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/0064c356-f0f7-4496-a839-28d41fa7c5d5:816cebd48f316b5651b69f9a3555e6ce45e7ce74/block-2048-1369/DSC_1107.jpg?quality=55 2048w">
+                </div>
+                <div class="ReferenceList-textWrap">
+                    <p class="ReferenceList-textWrap-subHeader Small">Forbrukerrådet </p>
+                    <p class="ReferenceList-textWrap-header u-gray u-superFat">Hacker smarte leker </p>
+                </div>
+            </a><a href="https://www.bouvet.no/prosjekter/viasat-zero-waste" title="Viasat" class="ReferenceList u-overflowHidden is-related">
+                <div class="ReferenceList-imageWrap">
+                    <img class="js-lazy ReferenceList-image" src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D&#39;http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg&#39;%20xmlns%3Axlink%3D&#39;http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink&#39;%20viewBox%3D&#39;0%200%201024%20685&#39;%3E%3Crect%20width%3D&#39;100%25&#39;%20height%3D&#39;100%25&#39;%20fill%3D&#39;%23eee&#39;%2F%3E%3Cdefs%3E%3Csymbol%20id%3D&#39;a&#39;%20viewBox%3D&#39;0%200%2090%2066&#39;%20opacity%3D&#39;0.3&#39;%3E%3Cpath%20d%3D&#39;M85%205v56H5V5h80m5-5H0v66h90V0z&#39;%2F%3E%3Ccircle%20cx%3D&#39;18&#39;%20cy%3D&#39;20&#39;%20r%3D&#39;6&#39;%2F%3E%3Cpath%20d%3D&#39;M56%2014L37%2039l-8-6-17%2023h67z&#39;%2F%3E%3C%2Fsymbol%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D&#39;%23a&#39;%20width%3D&#39;20%25&#39;%20x%3D&#39;40%25&#39;%2F%3E%3C%2Fsvg%3E" sizes="(min-width: 1440px) 480px, (min-width: 900px) 33vw, (min-width: 600px) 50vw, 33vw" alt="Zero Waste boksene" data-src="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/11ec7110-2d56-4942-a169-fa28dd3cd8e6:3bf3efba7a45b0be15590153408452a2a5a481ea/block-1024-685/003.jpg?quality=60" data-srcset="/bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/11ec7110-2d56-4942-a169-fa28dd3cd8e6:3bf3efba7a45b0be15590153408452a2a5a481ea/block-256-171/003.jpg?quality=70 256w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/11ec7110-2d56-4942-a169-fa28dd3cd8e6:3bf3efba7a45b0be15590153408452a2a5a481ea/block-512-342/003.jpg?quality=65 512w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/11ec7110-2d56-4942-a169-fa28dd3cd8e6:3bf3efba7a45b0be15590153408452a2a5a481ea/block-1024-685/003.jpg?quality=60 1024w, /bouvet-deler/utbrudd/smarten-up-your-pi-zero-web-camera-with-image-analysis-and-amazon-web-services-part-2/_/image/11ec7110-2d56-4942-a169-fa28dd3cd8e6:3bf3efba7a45b0be15590153408452a2a5a481ea/block-2048-1369/003.jpg?quality=55 2048w">
+                </div>
+                <div class="ReferenceList-textWrap">
+                    <p class="ReferenceList-textWrap-subHeader Small">Viasat</p>
+                    <p class="ReferenceList-textWrap-header u-gray u-superFat">Zero Waste</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+    </section>
+
+
+            
+            
+                
+    
+    
+
+
+            
+        </div>
+    </div>
+
+    <footer class="MainFooter u-flexRow u-flexJustifyCenter">
+    <div class="c-mainWrap">
+        <div class="top-padding-large u-padding c-justifyCenter">
+            <div class="u-flexRow c-related ReferenceList-wrapper">
+                
+                <div class="first ReferenceList u-overflowHidden is-mainList"> 
+                    <address class="MainFooter-office">
+                        <p><a href="https://www.bouvet.no/om-bouvet/vare-kontorer/kristiansand" class="bold MainFooter-officeName u-underline">Bouvet Kristiansand </a></p>
+                        <p><a href="mailto:info@bouvet.no" class="u-underline">info@bouvet.no</a></p>
+                        <a href="https://www.google.com/maps/place/58.153016,8.002276/@58.153016,8.002276,14z" target="_blank">
+                            Kjøita 25<br>4630 Kristiansand
+                        </a>
+                        <p><a href="tel:+47 23 40 60 00" class="u-underline">+47 23 40 60 00</a></p>
+                    </address>
+                    <div class="MainFooter-officeLink">
+                        <a class="u-underline" href="https://www.bouvet.no/om-bouvet/vare-kontorer">
+                            <p>Alle våre kontorer</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="second ReferenceList u-overflowHidden is-mainList">
+                    <div class="MainFooter-some">
+                        <p class="u-superFat">Bouvet i sosiale medier</p>
+                        <div class="u-flexRow MainFooter-someIcons">
+                            <div class="MainFooter-someIcon">
+                                <a href="https://www.facebook.com/bouvet" alt="Bouvet på Facebook" title="Bouvet på Facebook">
+                                    <svg class="MainFooter-soMeIcon facebook">
+                                        <use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#facebook"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="MainFooter-someIcon">
+                                <a href="https://twitter.com/bouvet" alt="Bouvet på Twitter" title="Bouvet på Twitter">
+                                    <svg class="MainFooter-soMeIcon twitter">
+                                        <use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#twitter"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="MainFooter-someIcon">
+                                <a href="https://www.linkedin.com/company-beta/9526/" alt="Bouvet på LinkedIn" title="Bouvet på LinkedIn">
+                                    <svg class="MainFooter-soMeIcon linkedin">
+                                        <use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#linkedin"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="MainFooter-someIcon">
+                                <a href="https://www.youtube.com/user/BouvetASA" alt="Bouvet på YouTube" title="Bouvet på YouTube">
+                                    <svg class="MainFooter-soMeIcon youtube">
+                                        <use xlink:href="/_/asset/no.bouvet.bouvet:1536160189/images/svg-sprites.svg#youtube"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="third ReferenceList u-overflowHidden is-mainList">
+                    <div>
+                        <div> 
+                            <a href="https://www.bouvet.no/om-bouvet/informasjonskapsler-og-personvern" class="u-underline"><p>Personvernerklæring</p></a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!--<p class="u-debugInfo" data-th-text="${debugInfo}">Debug info</p>-->
+</footer>
+
+    
+</div>
+
+<script async="" src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/main.min.js.download"></script><script src="./Smarten up your Pi Zero Web Camera with Image Analysis and Amazon Web Services (Part 2) - Bouvet Norge_files/prettify.min.js.download"></script>
+
+
+<script type="text/javascript" id="">(function(){var d=(new Date).getTime(),a=0,h=0,b=!0,g=!1,k=function(){h=(new Date).getTime();a+=h-d;b=!0},e=function(a){b&&(b=!1,d=(new Date).getTime(),g=!1);window.clearTimeout(l);l=window.setTimeout(k,5E3)},c=function(a,b){window.addEventListener?window.addEventListener(a,b):window.attachEvent&&window.attachEvent("on"+a,b)},f=function(c){b||(a+=(new Date).getTime()-d);!g&&0<a&&36E5>a&&window.dataLayer.push({event:"nonIdle",nonIdleTimeElapsed:a});b&&(g=!0);c&&"beforeunload"===c.type&&window.removeEventListener("beforeunload",
+f);a=0;d=(new Date).getTime();window.setTimeout(f,15E3)};c("mousedown",e);c("keydown",e);c("scroll",e);c("mousemove",e);c("beforeunload",f);var l=window.setTimeout(k,5E3);window.setTimeout(f,15E3)})();</script><div style="display: none; visibility: hidden;"><script type="text/javascript">(function(b,c,e,f,a,d){_nQc=f;a=b.createElement(c);d=b.getElementsByTagName(c)[0];a.async=1;a.src=c.src=("https:"==b.location.protocol?"https://":"http://")+e;d.parentNode.insertBefore(a,d)})(document,"script","serve.albacross.com/track.js","89652917");</script>
+</div><div id="ads"></div></body></html>

@@ -1,0 +1,14 @@
+
+var libJsLeadPlace = {
+ _author:"LeadPlace Dvpt",
+ _version:"1.01",
+ _scriptIframe:"//" + 'tag.leadplace.fr' + "/wckr.php",
+ SendtoLPbyIframe:function(_param) {
+  var _ifr=document.createElement("iframe");
+  _ifr.src=document.location.protocol+libJsLeadPlace._scriptIframe+"?"+_param;
+  _ifr.style.width="0px";_ifr.style.height="0px";_ifr.style.border="0px";
+  _ifr.style.display="none";_ifr.style.visibility="hidden";
+  var a=document.getElementsByTagName("head")[0];
+  if(a) a.appendChild(_ifr);
+ }
+};

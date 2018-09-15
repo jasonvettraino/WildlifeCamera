@@ -1,0 +1,114 @@
+if (themoneytizer_async != 1) {
+(function(){window.whenFormatFctDefined=function($context,$variable){if($context[$variable]){$context[$variable]()}else{Object.defineProperty($context,$variable,{configurable:!0,enumerable:!0,writeable:!0,get:function(){return this['_'+$variable]},set:function(val){this['_'+$variable]=val;$context[$variable]()}})}}}).call(this);
+(function(){window.whenDefined=function($context,$variable,$callback){if($context[$variable]){$callback()}else{Object.defineProperty($context,$variable,{configurable:!0,enumerable:!0,writeable:!0,get:function(){return this['_'+$variable]},set:function(val){this['_'+$variable]=val;$callback()}})}}}).call(this);
+whenDefined(window, 'moneytizergeo', function() {
+if(eucountries.includes(window.moneytizergeo)){
+if(!window.__cmp){
+      var elem = document.createElement('script');
+    elem.src = 'https://ads.themoneytizer.com/cs/dist/bundle.js';
+    elem.async = true;
+    elem.type = "text/javascript";
+    var scpt = document.getElementsByTagName('script')[0];
+    scpt.parentNode.insertBefore(elem, scpt);
+whenDefined(window, '__cmp', function() {
+try {
+    var cmpFunction = window.__cmp || utils.getWindowTop().__cmp;
+	} catch (e) {console.log("no CMP detected");}
+  if (!cmpFunction) {
+	cmpFunction('getConsentData', null, function (result) {
+   var myconsentData = result.consentData;
+   var gdprApplies = result.gdprApplies;
+});
+}
+});
+}
+}
+});
+if (window.jQuery) {
+jQuery.ajaxSetup({'cache':true});
+}
+var geo = document.createElement('script');
+geo.type = 'text/javascript';
+geo.async = true;
+geo.src = (document.location.protocol === 'https:' ? 'https:' : 'http:') + '//g.tmyzer.com/g/';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.appendChild(geo);
+var excludeconfiant = ["AL", "DZ", "AO", "AZ", "BH", "BD", "BJ", "BF", "BI", "CM", "CF", "TD", "CN", "CG", "CD", "EG", "GA", "GH", "GN", "IN", "ID", "IR", "IQ", "KZ", "KE", "KW", "LB", "MY", "ML", "MR", "MA", "NE", "NG", "OM", "PK", "QA", "RW", "SA", "SN", "SY", "TG", "TN", "TR", "AE", "VN", "ZM", "ZW"];
+var eucountries = ["AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE","EU", "ES", "FI", "FR", "GB", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK"];
+(new Image()).src = '//id5-sync.com/i/12/9.gif';
+(function(){var s=document.createElement('script'),
+t=document.getElementsByTagName('script')[0];s.type='text/javascript';
+s.defer=true;s.src='https://ads.themoneytizer.com/moneyvisibility.js';t.parentNode.insertBefore(s,t)})();
+(function(){var s=document.createElement('script'),
+t=document.getElementsByTagName('script')[0];s.type='text/javascript';
+s.defer=true;s.src='https://ads.themoneytizer.com/moneybile.js';t.parentNode.insertBefore(s,t)})();
+
+function loadScriptTemelio(url, callback) { var script = document.createElement("script");
+
+    script.type = "text/javascript"; script.async = true;
+
+    if (script.readyState) { script.onreadystatechange = function () {
+
+    if (script.readyState == "loaded" || script.readyState == "complete") {
+
+script.onreadystatechange = null;
+
+if (callback && typeof callback === "function") { callback(); }
+
+    } }; } else { script.onload = function () { if (callback && typeof callback === "function") { callback(); } }; }
+
+    script.src = url;
+
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+
+}
+
+loadScriptTemelio('//tag.leadplace.fr/libJsLP.js', function () { libJsLeadPlace.SendtoLPbyIframe("id=MTIZ"); });
+(function() {
+
+var pulse = document.createElement('script');
+pulse.type = 'text/javascript';
+pulse.async = true;
+pulse.src = (document.location.protocol === 'https:' ? 'https:' : 'http:') + '//tag.contextweb.com/getjs.static.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.appendChild(pulse);
+})();
+var _captifyAnalytics = _captifyAnalytics || [];
+    _captifyAnalytics.push('3');
+(function(){var s=document.createElement('script'),
+t=document.getElementsByTagName('script')[0];s.type='text/javascript';s.async=true;
+s.defer=true;s.src=('https:' == document.location.protocol ? 'https:' : 'http:')+'//p.cpx.to/p/11528/px.js?r='+(65536*(1+Math.random())|0).
+toString(16);t.parentNode.insertBefore(s,t)})();
+
+var sas = sas || {};
+sas.cmd = sas.cmd || []; 
+
+ sas.cmd.push(function() {
+             sas.setup({networkid: 1097, domain: "//ww1097.smartadserver.com", async: true, renderMode: sas.renderMode.ON_DEMAND });
+        });
+
+var generic = document.createElement("script");
+generic.setAttribute("type", "text/javascript");
+generic.setAttribute("src", "//ww1097.smartadserver.com/config.js?nwid=1097");
+document.head.appendChild(generic);
+
+   var criteoCallback = function (data) {
+            if (data && data.status === "OK") {
+                sas.cmd.push(function () { sas.setPartnerId("79", data.userid); });
+            }
+            sas.cmd.push(function(){sas.render();});
+        }
+ 
+        setTimeout(criteoCallback, 200);
+        var criteo_gum = document.createElement("script");
+criteo_gum.setAttribute("type", "text/javascript");
+criteo_gum.setAttribute("src", "//gum.criteo.com/sync?c=147&r=2&j=criteoCallback");
+criteo_gum.setAttribute("async", "true");
+document.head.appendChild(criteo_gum);
+
+var themoneytizer_async = 1;
+var pwidget_config = {
+     publisherKey:"1sbtjc2sqopftf032cn",
+     shareQuote:false
+};
+}
