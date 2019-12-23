@@ -1,0 +1,112 @@
+Description: Lambda script to trigger each time picture loaded into source bucket.
+Parameters:
+  BucketSuffix:
+    Description: Suffix for image buckets
+    Type: String
+    Default: cloudystuff.info
+Resources:
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal: {Service: [lambda.amazonaws.com]}
+          Action: ['sts:AssumeRole']
+      Path: /
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Policies:
+      - PolicyName: LambdaProcessedImageDeposit
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 's3:PutObject'
+              Resource: !Sub "arn:aws:s3:::processedimage.${BucketSuffix}"
+      - PolicyName: LambdaCatImageDeposit
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 's3:PutObject'
+              Resource: !Sub "arn:aws:s3:::catimage.${BucketSuffix}"
+      - PolicyName: LambdaInputImageShift
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'S3:DeleteObject'
+                - 'S3:ReadObject'
+              Resource: !Sub "arn:aws:s3:::inputimage.${BucketSuffix}"
+      - PolicyName: LambdaRefImageCheck
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'S3:ReadObject'
+              Resource: !Sub "arn:aws:s3:::referenceimage.${BucketSuffix}"
+
+  IdentifyImage:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: CatalogImage
+      Description: Lambda function to process each bucket image loaded
+      Handler: index.handler
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: !Sub |
+            var AWS = require('aws-sdk');
+            var s3 = new AWS.S3();
+
+            exports.handler = (event, context, callback) => {
+            // TODO implement
+                var responseData = {};
+                var eventText= JSON.stringify(event);
+                console.log('event data is:');
+                
+            //    console.log(eventText);
+                var sourceBucket = event.Records[0].s3.bucket.name;
+                var targetBucket = 'catimage' + sourceBucket.substr(sourceBucket.indexOf('.'),(sourceBucket.length - sourceBucket.indexOf('.')));
+                var moveObject = event.Records[0].s3.object.key;
+                console.log('bucket name ',sourceBucket);
+                console.log('object name ', moveObject);
+                
+                console.log('target bucket ', targetBucket);
+                var response = {
+                    statusCode: 200, 
+                    body: JSON.stringify('Hello from Lambda!')
+                };
+
+                console.log(response);
+                callback(null, response);
+            //      s3.putObject(params).promise().then(function(data) {
+            //        response.send(event, context, response.SUCCESS, responseData);
+            //      }).catch(function(err) {
+            //        console.log(JSON.stringify(err));
+            //        response.send(event, context, response.FAILED, responseData);
+            //      });
+            //    } else if (event.RequestType == 'Delete') {
+            //      var deleteParams = {
+            //        Bucket: event.ResourceProperties.Bucket,
+            //        Key: event.ResourceProperties.Key
+            //      };
+            //     s3.deleteObject(deleteParams).promise().then(function(data) {
+            //        response.send(event, context, response.SUCCESS, responseData);
+            //      }).catch(function(err) {
+            //        console.log(JSON.stringify(err));
+            //        response.send(event, context, response.FAILED, responseData);
+            //      });
+            //    } else {
+            //      response.send(event, context, response.SUCCESS, responseData);
+            //    }
+            //  };
+            };
+
+      Timeout: 30
+      Runtime: nodejs12.x
