@@ -1,0 +1,53 @@
+Description: Define IAM permissions for s3 and Lambda functions executed.
+Parameters:
+  BucketSuffix:
+    Description: Suffix for image buckets
+    Type: String
+    Default: cloudystuff.info
+Resources:
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal: {Service: [lambda.amazonaws.com]}
+          Action: ['sts:AssumeRole']
+      Path: /
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      Policies:
+      - PolicyName: LambdaProcessedImageDeposit
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 's3:PutObject'
+              Resource: !Sub "arn:aws:s3:::processedimage.${BucketSuffix}"
+      - PolicyName: LambdaCatImageDeposit
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 's3:PutObject'
+              Resource: !Sub "arn:aws:s3:::catimage.${BucketSuffix}"
+      - PolicyName: LambdaInputImageShift
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'S3:DeleteObject'
+                - 'S3:ReadObject'
+              Resource: !Sub "arn:aws:s3:::inputimage.${BucketSuffix}"
+      - PolicyName: LambdaRefImageCheck
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'S3:ReadObject'
+              Resource: !Sub "arn:aws:s3:::referenceimage.${BucketSuffix}"
