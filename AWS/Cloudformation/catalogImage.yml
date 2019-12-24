@@ -25,7 +25,7 @@ Resources:
             - Effect: Allow
               Action:
                 - 's3:PutObject'
-              Resource: !Sub "arn:aws:s3:::processedimage.${BucketSuffix}"
+              Resource: !Sub "arn:aws:s3:::processedimage.${BucketSuffix}/*"
       - PolicyName: LambdaCatImageDeposit
         PolicyDocument:
           Version: '2012-10-17'
@@ -33,7 +33,7 @@ Resources:
             - Effect: Allow
               Action:
                 - 's3:PutObject'
-              Resource: !Sub "arn:aws:s3:::catimage.${BucketSuffix}"
+              Resource: !Sub "arn:aws:s3:::catimage.${BucketSuffix}/*"
       - PolicyName: LambdaInputImageShift
         PolicyDocument:
           Version: '2012-10-17'
@@ -41,18 +41,18 @@ Resources:
             - Effect: Allow
               Action:
                 - 'S3:DeleteObject'
-                - 'S3:ReadObject'
-              Resource: !Sub "arn:aws:s3:::inputimage.${BucketSuffix}"
+                - 'S3:GetObject'
+              Resource: !Sub "arn:aws:s3:::inputimage.${BucketSuffix}/*"
       - PolicyName: LambdaRefImageCheck
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
             - Effect: Allow
               Action:
-                - 'S3:ReadObject'
-              Resource: !Sub "arn:aws:s3:::referenceimage.${BucketSuffix}"
+                - 'S3:GetObject'
+              Resource: !Sub "arn:aws:s3:::referenceimage.${BucketSuffix}/*"
 
-  IdentifyImage:
+  CatalogImage:
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: CatalogImage
@@ -72,12 +72,43 @@ Resources:
                 
             //    console.log(eventText);
                 var sourceBucket = event.Records[0].s3.bucket.name;
-                var targetBucket = 'catimage' + sourceBucket.substr(sourceBucket.indexOf('.'),(sourceBucket.length - sourceBucket.indexOf('.')));
+                var catTargetBucket = 'catimage' + sourceBucket.substr(sourceBucket.indexOf('.'),(sourceBucket.length - sourceBucket.indexOf('.')));
+                var processedTargetBucket = 'processedimage' + sourceBucket.substr(sourceBucket.indexOf('.'),(sourceBucket.length - sourceBucket.indexOf('.')));
                 var moveObject = event.Records[0].s3.object.key;
+                var sourceObject = sourceBucket + '/' + moveObject;
                 console.log('bucket name ',sourceBucket);
                 console.log('object name ', moveObject);
+                console.log('cat target bucket ', catTargetBucket);
+                console.log('processed target bucket ', processedTargetBucket);
+                console.log('SourceObject ', sourceObject);
                 
-                console.log('target bucket ', targetBucket);
+            //  Add Rekognition code
+            
+            //  Move file to processed bucket if not deemed cat image
+            //    if (event.RequestType == 'Create') {
+                  var copyParams = {
+                    Bucket: processedTargetBucket,
+                    CopySource: sourceObject,
+                    Key: moveObject
+                  };
+                  var deleteParams = {
+                    Bucket: sourceBucket,
+                    Key: moveObject
+                  };
+                  s3.copyObject(copyParams, function(err, data) {
+                  if (err) console.log(err, err.stack); // an error occurred
+                  else {
+                    console.log(data);           // successful response
+                    s3.deleteObject(deleteParams, function(err, data) {
+                    if (err) console.log(err, err.stack);  // error
+                    else     console.log();                 // deleted
+                    })};
+                  });
+            //    }            
+                
+            // Move file to cat bucket if probability high enough
+            
+            
                 var response = {
                     statusCode: 200, 
                     body: JSON.stringify('Hello from Lambda!')
