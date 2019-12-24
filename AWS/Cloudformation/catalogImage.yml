@@ -51,6 +51,14 @@ Resources:
               Action:
                 - 'S3:GetObject'
               Resource: !Sub "arn:aws:s3:::referenceimage.${BucketSuffix}/*"
+      - PolicyName: RekognitionLabels
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'rekognition:DetectLabels'
+              Resource: "*"
 
   CatalogImage:
     Type: AWS::Lambda::Function
@@ -63,6 +71,7 @@ Resources:
         ZipFile: !Sub |
             var AWS = require('aws-sdk');
             var s3 = new AWS.S3();
+            var rekognition = new AWS.Rekognition();
 
             exports.handler = (event, context, callback) => {
             // TODO implement
@@ -83,6 +92,35 @@ Resources:
                 console.log('SourceObject ', sourceObject);
                 
             //  Add Rekognition code
+                var params = {
+                    Image: {
+                    S3Object: {
+                        Bucket: sourceBucket, 
+                        Name: moveObject
+                        }
+                    }, 
+                    MaxLabels: 100, 
+                    MinConfidence: 70
+                };
+                
+                rekognition.detectLabels(params, function(err, data) {
+                if (err) console.log(err, err.stack); // an error occurred
+                else {     console.log(data);           // successful response
+                   /*
+                   data = {
+                    Labels: [
+                       {
+                      Confidence: 99.25072479248047, 
+                      Name: "People"
+                     }, 
+                       {
+                      Confidence: 99.25074005126953, 
+                      Name: "Person"
+                     }
+                    ]
+                   }
+                   */
+
             
             //  Move file to processed bucket if not deemed cat image
             //    if (event.RequestType == 'Create') {
@@ -107,8 +145,20 @@ Resources:
             //    }            
                 
             // Move file to cat bucket if probability high enough
+            //    if (event.RequestType == 'Create') {
+                  var copyParams = {
+                    Bucket: catTargetBucket,
+                    CopySource: sourceObject,
+                    Key: moveObject
+                  };
+                  var deleteParams = {
+                    Bucket: sourceBucket,
+                    Key: moveObject
+                  };
             
-            
+            //    }            
+                }
+                });
                 var response = {
                     statusCode: 200, 
                     body: JSON.stringify('Hello from Lambda!')
