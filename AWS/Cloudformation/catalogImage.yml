@@ -106,57 +106,49 @@ Resources:
                 rekognition.detectLabels(params, function(err, data) {
                 if (err) console.log(err, err.stack); // an error occurred
                 else {     console.log(data);           // successful response
-                   /*
-                   data = {
-                    Labels: [
-                       {
-                      Confidence: 99.25072479248047, 
-                      Name: "People"
-                     }, 
-                       {
-                      Confidence: 99.25074005126953, 
-                      Name: "Person"
-                     }
-                    ]
-                   }
-                   */
 
+                    var catFound = false;
+                    data.Labels.forEach(element => { 
+                        console.log(element);
+                        if (element.Name == "Cat" && element.Confidence >= 70) catFound = true
+                    }); 
             
+                    var deleteParams = {
+                        Bucket: sourceBucket,
+                        Key: moveObject
+                    };
+
             //  Move file to processed bucket if not deemed cat image
-            //    if (event.RequestType == 'Create') {
-                  var copyParams = {
-                    Bucket: processedTargetBucket,
-                    CopySource: sourceObject,
-                    Key: moveObject
-                  };
-                  var deleteParams = {
-                    Bucket: sourceBucket,
-                    Key: moveObject
-                  };
-                  s3.copyObject(copyParams, function(err, data) {
-                  if (err) console.log(err, err.stack); // an error occurred
-                  else {
-                    console.log(data);           // successful response
-                    s3.deleteObject(deleteParams, function(err, data) {
-                    if (err) console.log(err, err.stack);  // error
-                    else     console.log();                 // deleted
-                    })};
-                  });
-            //    }            
+                    if (catFound==false) {
+                        var copyParams = {
+                            Bucket: processedTargetBucket,
+                            CopySource: sourceObject,
+                            Key: moveObject
+                        };
+                    }            
                 
             // Move file to cat bucket if probability high enough
-            //    if (event.RequestType == 'Create') {
-                  var copyParams = {
-                    Bucket: catTargetBucket,
-                    CopySource: sourceObject,
-                    Key: moveObject
-                  };
-                  var deleteParams = {
-                    Bucket: sourceBucket,
-                    Key: moveObject
-                  };
+                    if (catFound) {
+                        console.log('found cat image!!');
+                        var copyParams = {
+                            Bucket: catTargetBucket,
+                            CopySource: sourceObject,
+                            Key: moveObject
+                        };
+                    }            
+
+                    console.log(copyParams);
+                    s3.copyObject(copyParams, function(err, data) {
+                        if (err) console.log(err, err.stack); // an error occurred
+                        else {
+                            console.log(data);           // successful response
+                            s3.deleteObject(deleteParams, function(err, data) {
+                                if (err) console.log(err, err.stack);  // error
+                                else     console.log();                 // deleted
+                            })
+                        };
+                    });
             
-            //    }            
                 }
                 });
                 var response = {
@@ -166,28 +158,15 @@ Resources:
 
                 console.log(response);
                 callback(null, response);
-            //      s3.putObject(params).promise().then(function(data) {
-            //        response.send(event, context, response.SUCCESS, responseData);
-            //      }).catch(function(err) {
-            //        console.log(JSON.stringify(err));
-            //        response.send(event, context, response.FAILED, responseData);
-            //      });
-            //    } else if (event.RequestType == 'Delete') {
-            //      var deleteParams = {
-            //        Bucket: event.ResourceProperties.Bucket,
-            //        Key: event.ResourceProperties.Key
-            //      };
-            //     s3.deleteObject(deleteParams).promise().then(function(data) {
-            //        response.send(event, context, response.SUCCESS, responseData);
-            //      }).catch(function(err) {
-            //        console.log(JSON.stringify(err));
-            //        response.send(event, context, response.FAILED, responseData);
-            //      });
-            //    } else {
-            //      response.send(event, context, response.SUCCESS, responseData);
-            //    }
-            //  };
             };
 
       Timeout: 30
       Runtime: nodejs12.x
+  
+  LambdaS3Trigger:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName: !Ref CatalogImage
+      Principal: s3.amazonaws.com
+      SourceArn: !Sub "arn:aws:s3:::inputimage.${BucketSuffix}"
