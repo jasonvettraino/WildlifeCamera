@@ -8,6 +8,11 @@
       "Description": "Suffix for image buckets",
       "Type": "String",
       "Default": "cloudystuff.info"
+    },
+    "LambdaTrigger": {
+      "Description": "ARN for triggered Lambda Function",
+      "Type": "String",
+      "Default": "arn:aws:lambda:eu-west-1:392706139484:function:CatalogImage"
     }
   },
 
@@ -20,7 +25,12 @@
                           ".",
                           {"Ref": "BucketSuffix"}
                           ]]
-                        }
+                        },
+      "NotificationConfiguration": {
+        "LambdaConfigurations": [
+			{"Function": {"Ref": "LambdaTrigger"},
+            "Event": "s3:ObjectCreated:*"}
+		]}
       }
     },
     "catBucket" : {
