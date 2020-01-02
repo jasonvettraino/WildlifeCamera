@@ -40,10 +40,14 @@ exports.AnalyzeImage = (event) => {
   console.log('Analyzing ${file.name}.');
 
   client.labelDetection(file).then(response => {
-	console.log(response);
-	const labels = response.labelAnnotations;
+	console.log(response[0]);
+	const labels = response[0].labelAnnotations;
 	console.log('Labels:');
-	labels.forEach(label => console.log(label.description));
+    console.log(labels[0]);
+	labels.forEach(label => {
+      console.log(label.description)
+      console.log(label.score)
+    });
 	}).catch((err) => {
       		console.error('Failed to analyze ${file.name}.', err);
     	});
