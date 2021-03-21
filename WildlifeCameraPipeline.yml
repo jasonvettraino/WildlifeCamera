@@ -41,3 +41,17 @@ steps:
     targetFolder: 'Lambda'
     keyManagement: 'awsManaged'
     encryptionAlgorithm: 'AES256'
+
+- task: CloudFormationCreateOrUpdateStack@1
+  inputs:
+    awsCredentials: 'WildlifePipeline'
+    regionName: 'eu-west-1'
+    stackName: 'WildlifeCameraLambda'
+    templateSource: 'file'
+    templateFile: '$(Build.SourcesDirectory)/AWS/Cloudformation/catalogImage.yml'
+    globExpressions: '*(*.yml|*.json)'
+    targetFolder: 'cloudformation'
+    createBucket: true
+    keyManagement: 'awsManaged'
+    encryptionAlgorithm: 'AES256'
+
