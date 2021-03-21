@@ -1,0 +1,43 @@
+# Starter pipeline
+
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- Master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+  
+- task: S3Upload@1
+  inputs:
+    awsCredentials: 'WildlifePipeline'
+    regionName: 'eu-west-1'
+    bucketName: 'wildlifecamera.cloudystuff.info'
+    sourceFolder: '$(Build.SourcesDirectory)/AWS/Cloudformation'
+    globExpressions: '*(*.yml|*.json)'
+    targetFolder: 'cloudformation'
+    createBucket: true
+    keyManagement: 'awsManaged'
+    encryptionAlgorithm: 'AES256'
+
+- task: S3Upload@1
+  inputs:
+    awsCredentials: 'WildlifePipeline'
+    regionName: 'eu-west-1'
+    bucketName: 'wildlifecamera.cloudystuff.info'
+    sourceFolder: '$(Build.SourcesDirectory)/AWS/Lambda'
+    globExpressions: '**'
+    targetFolder: 'Lambda'
+    keyManagement: 'awsManaged'
+    encryptionAlgorithm: 'AES256'
