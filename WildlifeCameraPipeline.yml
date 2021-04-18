@@ -60,7 +60,7 @@ steps:
     awsCredentials: 'WildlifePipeline'
     regionName: 'eu-west-1'
     bucketName: 'greengrass-component-artifacts-392706139484-eu-west-1'
-    sourceFolder: '$(Build.SourcesDirectory)/AWS/Greengrass/artifacts'
+    sourceFolder: '$(Build.SourcesDirectory)/AWS/GreenGrass/artifacts'
     globExpressions: '**'
     targetFolder: 'artifacts'
     createBucket: true
