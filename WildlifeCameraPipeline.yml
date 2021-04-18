@@ -72,4 +72,4 @@ steps:
     regionName: 'eu-west-1'
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-component-version'
-    awsArguments: '\   --inline-recipe fileb:$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICamera.json'
+    awsArguments: '--inline-recipe fileb:$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICamera.json'
