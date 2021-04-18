@@ -1,6 +1,6 @@
 {
   "RecipeFormatVersion": "2020-01-25",
-  "ComponentName": "com.example.PICamera",
+  "ComponentName": "com.example.WildlifePiCamera",
   "ComponentVersion": "1.0.0",
   "ComponentDescription": "Logic to detect movement and send images to S3 bucket for processing.",
   "ComponentPublisher": "Amazon",
