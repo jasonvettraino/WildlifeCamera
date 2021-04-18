@@ -65,3 +65,11 @@ steps:
     targetFolder: 'artifacts'
     createBucket: true
 
+
+- task: AWSCLI@1
+  inputs:
+    awsCredentials: 'WildlifePipeline'
+    regionName: 'eu-west-1'
+    awsCommand: 'aws greengrassv2'
+    awsSubCommand: 'create-component-version'
+    awsArguments: '\   --inline-recipe fileb:$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICamera.json'
