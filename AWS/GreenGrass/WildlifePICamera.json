@@ -20,7 +20,7 @@
       },
       "Artifacts": [
         {
-          "Uri": "s3://greengrass-component-artifacts-392706139484-eu-west-1/artifacts/com.example.PICamera/1.0.0/AWSpir01.py"
+          "Uri": "s3://greengrass-component-artifacts-392706139484-eu-west-1/artifacts/com.example.WildlifePiCamera/1.0.0/AWSpir01.py"
         }
       ]
     }
