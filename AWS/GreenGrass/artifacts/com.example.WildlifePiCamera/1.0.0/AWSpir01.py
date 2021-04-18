@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import sys
 from datetime import datetime
 import subprocess
 import boto3
@@ -22,7 +23,9 @@ try:
 	    pid=subprocess.call(cmd, shell=True)
 
 	    first_object = s3_resource.Object(
-			bucket_name="inputimage.cloudystuff.info", 
+##			bucket_name="inputimage.cloudystuff.info", 
+            bucket_name=sys.argv[1], 
+            
 			key=filename)
 
 	    first_object.upload_file(filename) 
