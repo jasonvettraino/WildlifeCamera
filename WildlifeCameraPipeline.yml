@@ -11,6 +11,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  newLambdaFunction: false
   newGreengrassComponent: false
   newGreengrassDeployment: false
   
@@ -34,6 +35,15 @@ steps:
       {
         $name=$temp[$i]
         echo "this is $name file"
+        if ($name -like 'AWS/Lambda/*')  #if f1 is a subfolder under a folder use "- like '*/f1/*'"
+        { 
+          ##archive folder artifacts if it is changed.
+          ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
+          
+          ##set the flag variable f1Flag to true
+          Write-Host "##vso[task.setvariable variable=newLambdaFunction]true"
+        }
+        
         if ($name -like 'AWS/GreenGrass/artifacts/*')  #if f1 is a subfolder under a folder use "- like '*/f1/*'"
         { 
           ##archive folder artifacts if it is changed.
@@ -42,6 +52,7 @@ steps:
           ##set the flag variable f1Flag to true
           Write-Host "##vso[task.setvariable variable=newGreengrassComponent]true"
         }
+
         if ($name -like 'AWS/GreenGrass/*Deploy.json')
         {
           ##achive folder f2 if it is changed.
@@ -84,6 +95,7 @@ steps:
     targetFolder: 'Lambda'
     keyManagement: 'awsManaged'
     encryptionAlgorithm: 'AES256'
+  condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
@@ -97,6 +109,7 @@ steps:
     createBucket: true
     keyManagement: 'awsManaged'
     encryptionAlgorithm: 'AES256'
+  condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
 
 - task: S3Upload@1
   inputs:
