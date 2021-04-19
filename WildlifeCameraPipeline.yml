@@ -16,13 +16,6 @@ variables:
   newGreengrassDeployment: false
   
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
 - powershell: |
       ## get the changed files
@@ -95,7 +88,7 @@ steps:
     targetFolder: 'Lambda'
     keyManagement: 'awsManaged'
     encryptionAlgorithm: 'AES256'
-  condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
+  condition: and(succeeded(), eq(variables.newLambdaFunction, true))
 
 - task: CloudFormationCreateOrUpdateStack@1
   inputs:
@@ -109,7 +102,7 @@ steps:
     createBucket: true
     keyManagement: 'awsManaged'
     encryptionAlgorithm: 'AES256'
-  condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
+  condition: and(succeeded(), eq(variables.newLambdaFunction true))
 
 - task: S3Upload@1
   inputs:
