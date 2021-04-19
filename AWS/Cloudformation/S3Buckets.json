@@ -7,12 +7,14 @@
       "Type": "String",
       "Default": "cloudystuff.info"
     },
+
     "LambdaTrigger": {
       "Description": "ARN for triggered Lambda Function",
       "Type": "String",
       "Default": "arn:aws:lambda:eu-west-1:392706139484:function:CatalogImage"
     }
   },
+
   "Resources": {
     "inputBucket" : {
       "Type" : "AWS::S3::Bucket",
@@ -30,17 +32,22 @@
 		]}
       }
     },
-    "catBucket" : {
-      "Type" : "AWS::S3::Bucket",
+    "catBucket": {
+      "Type": "AWS::S3::Bucket",
       "Properties": {
-        "BucketName" : {"Fn::Join": ["",[
-                        "catimage",
-                        ".",
-                        {"Ref": "BucketSuffix"}
-                        ]]
-                      }
+        "BucketName": {
+          "Fn::Join": [
+            "",
+            [
+              "catimage",
+              ".",
+              { "Ref": "BucketSuffix" }
+            ]
+          ]
+        }
       }
     },
+
     "processedBucket" : {
       "Type" : "AWS::S3::Bucket",
       "Properties": {
