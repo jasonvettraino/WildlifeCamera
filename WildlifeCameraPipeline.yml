@@ -78,7 +78,7 @@ steps:
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-component-version'
     awsArguments: '--inline-recipe fileb://$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICamera.json'
-  condition: and(succeeded(),(eq(variables.newGreengrassComponent, true))
+  condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
 
 - task: AWSCLI@1
   inputs:
@@ -87,4 +87,4 @@ steps:
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-deployment'
     awsArguments: '--cli-input-json file://$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICameraDeploy.json'
-  condition: and(succeeded(),(eq(variables.newGreengrassDeployment, true))
+  condition: and(succeeded(), eq(variables.newGreengrassDeployment, true))
