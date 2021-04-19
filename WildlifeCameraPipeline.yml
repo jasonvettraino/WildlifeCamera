@@ -23,7 +23,10 @@ steps:
       $temp=$files -split ' '
       $count=$temp.Length
       echo "Total changed $count files"
-     
+      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\Lambda
+      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\GreenGrass
+      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts
+
       For ($i=0; $i -lt $temp.Length; $i++)
       {
         $name=$temp[$i]
@@ -32,7 +35,10 @@ steps:
         { 
           ##archive folder artifacts if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
-          
+          if(Test-Path -path $file){
+            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\Lambda
+          }
+
           ##set the flag variable f1Flag to true
           Write-Host "##vso[task.setvariable variable=newLambdaFunction]true"
         }
@@ -41,6 +47,10 @@ steps:
         { 
           ##archive folder artifacts if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
+          if(Test-Path -path $file){
+            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts
+          }
+
           
           ##set the flag variable f1Flag to true
           Write-Host "##vso[task.setvariable variable=newGreengrassComponent]true"
@@ -50,20 +60,25 @@ steps:
         {
           ##achive folder f2 if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f2 -DestinationPath $(Build.ArtifactStagingDirectory)/f2.zip
+          if(Test-Path -path $file){
+            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass
+          }
+
+          
           ##set the flag variable f2Flag to true
           Write-Host "##vso[task.setvariable variable=newGreengrassDeployment]True"
         }
       }
       ## create a temp folder to hold the changed files
-      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\temp
+##      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\temp
 
-      foreach($file in $temp){
-        if(Test-Path -path $file){
-        Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\temp
-        }
+##      foreach($file in $temp){
+##        if(Test-Path -path $file){
+##        Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\temp
+##        }
       }
       ## zip the temp folder which only have the changed files
-      Compress-Archive -Path $(system.defaultworkingdirectory)\temp\* -DestinationPath $(Build.ArtifactStagingDirectory)\changedfiles.zip
+##      Compress-Archive -Path $(system.defaultworkingdirectory)\temp\* -DestinationPath $(Build.ArtifactStagingDirectory)\changedfiles.zip
 
   
 - task: S3Upload@1
@@ -72,7 +87,7 @@ steps:
     regionName: 'eu-west-1'
     bucketName: 'wildlifecamera.cloudystuff.info'
 ##    sourceFolder: '$(Build.SourcesDirectory)/AWS/Cloudformation'
-    sourceFolder: '$(system.defaultworkingdirectory)/temp/AWS/Cloudformation'
+    sourceFolder: '$(system.defaultworkingdirectory)/changed/AWS/Cloudformation'
     globExpressions: '*(*.yml|*.json)'
     targetFolder: 'cloudformation'
     createBucket: true
@@ -84,7 +99,7 @@ steps:
     awsCredentials: 'WildlifePipeline'
     regionName: 'eu-west-1'
     bucketName: 'wildlifecamera.cloudystuff.info'
-    sourceFolder: '$(Build.SourcesDirectory)/AWS/Lambda'
+    sourceFolder: '$(system.defaultworkingdirectory)/changed/AWS/Lambda'
     globExpressions: '**'
     targetFolder: 'Lambda'
     keyManagement: 'awsManaged'
@@ -110,7 +125,7 @@ steps:
     awsCredentials: 'WildlifePipeline'
     regionName: 'eu-west-1'
     bucketName: 'greengrass-component-artifacts-392706139484-eu-west-1'
-    sourceFolder: '$(Build.SourcesDirectory)/AWS/GreenGrass/artifacts'
+    sourceFolder: '$(system.defaultworkingdirectory)/changed/AWS/GreenGrass/artifacts'
     globExpressions: '**'
     targetFolder: 'artifacts'
     createBucket: true
@@ -123,7 +138,7 @@ steps:
     regionName: 'eu-west-1'
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-component-version'
-    awsArguments: '--inline-recipe fileb://$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICamera.json'
+    awsArguments: '--inline-recipe fileb://$(system.defaultworkingdirectory)/changed/AWS/GreenGrass/WildlifePICamera.json'
   condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
 
 - task: AWSCLI@1
@@ -132,5 +147,5 @@ steps:
     regionName: 'eu-west-1'
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-deployment'
-    awsArguments: '--cli-input-json file://$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICameraDeploy.json'
+    awsArguments: '--cli-input-json file://$(system.defaultworkingdirectory)/changed/AWS/GreenGrass/WildlifePICameraDeploy.json'
   condition: and(succeeded(), eq(variables.newGreengrassDeployment, true))
