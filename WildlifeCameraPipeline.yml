@@ -11,6 +11,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
+  newCloudformation: false
   newLambdaFunction: false
   newGreengrassComponent: false
   newGreengrassDeployment: false
@@ -23,6 +24,7 @@ steps:
       $temp=$files -split ' '
       $count=$temp.Length
       echo "Total changed $count files"
+      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\Cloudformation
       New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\Lambda
       New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\GreenGrass
       New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts
@@ -31,6 +33,18 @@ steps:
       {
         $name=$temp[$i]
         echo "this is $name file"
+        if ($name -like 'AWS/Cloudformation/*')  #if f1 is a subfolder under a folder use "- like '*/f1/*'"
+        { 
+          ##archive folder artifacts if it is changed.
+          ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
+          if(Test-Path -path $file){
+            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\Cloudformation
+          }
+
+          ##set the flag variable f1Flag to true
+          Write-Host "##vso[task.setvariable variable=newCloudformation]true"
+        }
+        
         if ($name -like 'AWS/Lambda/*')  #if f1 is a subfolder under a folder use "- like '*/f1/*'"
         { 
           ##archive folder artifacts if it is changed.
