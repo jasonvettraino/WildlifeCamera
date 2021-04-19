@@ -37,8 +37,8 @@ steps:
         { 
           ##archive folder artifacts if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
-          if(Test-Path -path $file){
-            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\Cloudformation
+          if(Test-Path -path $name){
+            Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\Cloudformation
           }
 
           ##set the flag variable f1Flag to true
@@ -49,8 +49,8 @@ steps:
         { 
           ##archive folder artifacts if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
-          if(Test-Path -path $file){
-            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\Lambda
+          if(Test-Path -path $name){
+            Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\Lambda
           }
 
           ##set the flag variable f1Flag to true
@@ -61,8 +61,8 @@ steps:
         { 
           ##archive folder artifacts if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
-          if(Test-Path -path $file){
-            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts
+          if(Test-Path -path $name){
+            Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts
           }
 
           
@@ -74,8 +74,8 @@ steps:
         {
           ##achive folder f2 if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f2 -DestinationPath $(Build.ArtifactStagingDirectory)/f2.zip
-          if(Test-Path -path $file){
-            Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass
+          if(Test-Path -path $name){
+            Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass
           }
 
           
