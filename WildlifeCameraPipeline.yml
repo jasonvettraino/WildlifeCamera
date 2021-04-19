@@ -102,7 +102,7 @@ steps:
     createBucket: true
     keyManagement: 'awsManaged'
     encryptionAlgorithm: 'AES256'
-  condition: and(succeeded(), eq(variables.newLambdaFunction true))
+  condition: and(succeeded(), eq(variables.newLambdaFunction, true))
 
 - task: S3Upload@1
   inputs:
