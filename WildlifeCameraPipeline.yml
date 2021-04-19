@@ -71,7 +71,8 @@ steps:
     awsCredentials: 'WildlifePipeline'
     regionName: 'eu-west-1'
     bucketName: 'wildlifecamera.cloudystuff.info'
-    sourceFolder: '$(Build.SourcesDirectory)/AWS/Cloudformation'
+##    sourceFolder: '$(Build.SourcesDirectory)/AWS/Cloudformation'
+    sourceFolder: '$(system.defaultworkingdirectory)/temp/AWS/Cloudformation'
     globExpressions: '*(*.yml|*.json)'
     targetFolder: 'cloudformation'
     createBucket: true
