@@ -1,8 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-
   "Description": "AWS CloudFormation Creates three s3 buckets with same suffix - used for processing images.",
-
   "Parameters": {
     "BucketSuffix": {
       "Description": "Suffix for image buckets",
@@ -15,7 +13,6 @@
       "Default": "arn:aws:lambda:eu-west-1:392706139484:function:CatalogImage"
     }
   },
-
   "Resources": {
     "inputBucket" : {
       "Type" : "AWS::S3::Bucket",
