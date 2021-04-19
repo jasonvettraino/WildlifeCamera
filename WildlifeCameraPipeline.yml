@@ -69,17 +69,6 @@ steps:
           Write-Host "##vso[task.setvariable variable=newGreengrassDeployment]True"
         }
       }
-      ## create a temp folder to hold the changed files
-##      New-Item -ItemType directory -Path $(system.defaultworkingdirectory)\temp
-
-##      foreach($file in $temp){
-##        if(Test-Path -path $file){
-##        Copy-Item -Path $file -Destination $(system.defaultworkingdirectory)\temp
-##        }
-##      }
-      ## zip the temp folder which only have the changed files
-##      Compress-Archive -Path $(system.defaultworkingdirectory)\temp\* -DestinationPath $(Build.ArtifactStagingDirectory)\changedfiles.zip
-
   
 - task: S3Upload@1
   inputs:
