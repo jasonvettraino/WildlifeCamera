@@ -68,7 +68,7 @@ steps:
     globExpressions: '**'
     targetFolder: 'artifacts'
     createBucket: true
-  condition: and(succeeded(),(eq(variables.newGreengrassComponent, true))
+  condition: and(succeeded(), eq(variables.newGreengrassComponent, true))
 
 
 - task: AWSCLI@1
