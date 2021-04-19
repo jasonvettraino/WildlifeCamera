@@ -10,6 +10,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  newGreengrassComponent: false
+  newGreengrassDeployment: false
+  
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -64,6 +68,7 @@ steps:
     globExpressions: '**'
     targetFolder: 'artifacts'
     createBucket: true
+  condition: and(succeeded(),(eq(variables.newGreengrassComponent, true))
 
 
 - task: AWSCLI@1
@@ -73,6 +78,7 @@ steps:
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-component-version'
     awsArguments: '--inline-recipe fileb://$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICamera.json'
+  condition: and(succeeded(),(eq(variables.newGreengrassComponent, true))
 
 - task: AWSCLI@1
   inputs:
@@ -81,3 +87,4 @@ steps:
     awsCommand: 'greengrassv2'
     awsSubCommand: 'create-deployment'
     awsArguments: '--cli-input-json file://$(Build.SourcesDirectory)/AWS/GreenGrass/WildlifePICameraDeploy.json'
+  condition: and(succeeded(),(eq(variables.newGreengrassDeployment, true))
