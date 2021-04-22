@@ -12,7 +12,8 @@ GPIO.setup(pirPin, GPIO.IN)
 s3_resource = boto3.resource('s3')
  
 try:
-	while True:
+	
+    while True:
     
 		if (GPIO.input(pirPin)):
 			print ("Motion Detected!")

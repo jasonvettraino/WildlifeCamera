@@ -4,11 +4,13 @@
     "aws.greengrass.Cli": {
       "componentVersion": "2.0.5"
     },
+
     "com.example.WildlifePiCamera": {
       "componentVersion": "1.0.1",
       "configurationUpdate": {
         "merge": "{\"BucketName\": \"inputimage.cloudystuff.info\"}"
       }
+
     }
   },
 
@@ -17,9 +19,11 @@
       "action": "NOTIFY_COMPONENTS",
       "timeoutInSeconds": 30
     },
+
     "configurationValidationPolicy": {
       "timeoutInSeconds": 60
     },
+
     "failureHandlingPolicy": "ROLLBACK"
   }
 }
