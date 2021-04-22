@@ -16,6 +16,7 @@ try:
 	
     while True:
     
+# Check if PIR triggered 
 		if (GPIO.input(pirPin)):
 			print ("Motion Detected!")
 			now = datetime.now()

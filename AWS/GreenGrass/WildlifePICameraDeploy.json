@@ -1,6 +1,8 @@
 {
   "targetArn": "arn:aws:iot:eu-west-1:392706139484:thinggroup/WildlifePIGroup",
+  
   "components": {
+  
     "aws.greengrass.Cli": {
       "componentVersion": "2.0.5"
     },
