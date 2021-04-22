@@ -4,7 +4,8 @@ import sys
 from datetime import datetime
 import subprocess
 import boto3
- 
+
+# Setup the pin to register PIR triggers 
 GPIO.setmode(GPIO.BCM)
 pirPin = 7
 GPIO.setup(pirPin, GPIO.IN)

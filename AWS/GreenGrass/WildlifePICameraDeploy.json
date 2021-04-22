@@ -12,6 +12,7 @@
       }
 
     }
+
   },
 
   "deploymentPolicies": {
@@ -26,4 +27,5 @@
 
     "failureHandlingPolicy": "ROLLBACK"
   }
+
 }

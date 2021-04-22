@@ -8,6 +8,7 @@
     "DefaultConfiguration": {
       "BucketName": "inputimage.cloudystuff.info"
     }
+
   },
 
   "Manifests": [
@@ -16,9 +17,11 @@
       "Platform": {
         "os": "linux"
       },
+
       "Lifecycle": {
         "Run": "python3 {artifacts:path}/AWSpir01.py '{configuration:/BucketName}'"
       },
+
       "Artifacts": [
         {
           "Uri": "s3://greengrass-component-artifacts-392706139484-eu-west-1/artifacts/com.example.WildlifePiCamera/1.0.1/AWSpir01.py"
