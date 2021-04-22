@@ -62,7 +62,7 @@ steps:
           ##archive folder artifacts if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f1 -DestinationPath $(Build.ArtifactStagingDirectory)/f1.zip
           if(Test-Path -path $name){
-            Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts - Recurse
+            Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass\artifacts -Recurse
           }
 
           
