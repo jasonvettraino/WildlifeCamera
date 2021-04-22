@@ -9,6 +9,7 @@
       "BucketName": "inputimage.cloudystuff.info"
     }
   },
+
   "Manifests": [
     {
       "Name": "Linux",

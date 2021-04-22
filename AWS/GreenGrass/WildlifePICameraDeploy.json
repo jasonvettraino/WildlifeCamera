@@ -7,10 +7,11 @@
     "com.example.WildlifePiCamera": {
       "componentVersion": "1.0.1",
       "configurationUpdate": {
-        "merge":"{\"BucketName\": \"inputimage.cloudystuff.info\"}"
+        "merge": "{\"BucketName\": \"inputimage.cloudystuff.info\"}"
       }
     }
   },
+
   "deploymentPolicies": {
     "componentUpdatePolicy": {
       "action": "NOTIFY_COMPONENTS",

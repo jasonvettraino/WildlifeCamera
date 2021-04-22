@@ -13,6 +13,7 @@ s3_resource = boto3.resource('s3')
  
 try:
 	while True:
+    
 		if (GPIO.input(pirPin)):
 			print ("Motion Detected!")
 			now = datetime.now()
@@ -32,5 +33,6 @@ try:
 			print ("No motion")
         
 		time.sleep(1)
+        
 except KeyboardInterrupt:
 	GPIO.cleanup()
