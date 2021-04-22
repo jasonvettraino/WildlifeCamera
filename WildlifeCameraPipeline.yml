@@ -70,15 +70,17 @@ steps:
           Write-Host "##vso[task.setvariable variable=newGreengrassComponent]true"
         }
 
-        if ($name -like 'AWS/GreenGrass/*Deploy.json')
+        if ($name -like 'AWS/GreenGrass/*.json')
         {
           ##achive folder f2 if it is changed.
           ##Compress-Archive -Path $(system.defaultworkingdirectory)/f2 -DestinationPath $(Build.ArtifactStagingDirectory)/f2.zip
           if(Test-Path -path $name){
             Copy-Item -Path $name -Destination $(system.defaultworkingdirectory)\changed\AWS\GreenGrass
           }
+        }
 
-          
+        if ($name -like 'AWS/GreenGrass/*Deploy.json')
+        {
           ##set the flag variable f2Flag to true
           Write-Host "##vso[task.setvariable variable=newGreengrassDeployment]True"
         }
